@@ -1,0 +1,160 @@
+name: "Deutsch"
+prefix: "§dGame"
+
+alreadyonline: "§e┃ [%key:prefix] §8» §cEin Fehler ist aufgetreten!"
+locked:
+  starting: "§e┃ [%key:prefix] §8» §cDie Runde startet gerade."
+  ending: "§e┃ [%key:prefix] §8» §cDie Runde endet gerade."
+
+chat: 
+  default: "§r[%group][%player] §8» §7[%message]"
+  team:
+    private: "§r[%teamcolor][%player] §8» §7[%message]"
+    all: "§8[§7@all§8] §r[%teamcolor][%player] §8» §7[%message]"
+  spectator: "§8[§7Spectator§8] [%group][%player] §8» §7[%message]"
+  
+map: 
+  show: "§e┃ [%key:prefix] §8» §aMap §7» §e[%map] §avon §c[%builder]"
+  vote: "§e┃ [%key:prefix] §8» §cÜber die Map wird noch abgestimmt."
+  
+actionbar:
+  selectteam: "§cWähle dein Team"
+  team: "[%teamcolor]Team [%team]"
+  spectator: "§7Spectator"
+  spectating: "§7Du schaust [%teamcolor][%player] §7zu"
+  
+sidebar:
+  title: "  §5EagleFamily§7.§5net  "
+  votewaiting: "\n§6Modus\n §8➥ [%key:prefix] §e[%size]\n\n§6Map\n §8➥ §eAbstimmung\n\n§cWarten auf\n §cSpieler\n "
+  votestarting: "\n§6Modus\n §8➥ [%key:prefix] §e[%size]\n\n§6Map\n §8➥ §eAbstimmung\n\n§aSpiel startet in\n §e[%time] Sekunden\n "
+  mapwaiting: "\n§6Modus\n §8➥ [%key:prefix] §e[%size]\n\n§6Map\n §8➥ §e[%map]\n\n§cWarten auf\n §cSpieler\n "
+  mapstarting: "\n§6Modus\n §8➥ [%key:prefix] §e[%size]\n\n§6Map\n §8➥ §e[%map]\n\n§aSpiel startet in\n §e[%time] Sekunden\n "
+  
+title:
+  spectating: "§bSpielersicht"
+  spectatingsub: "§cZum Verlassen » Shift"
+
+lobby:
+  join: " §a» §r[%group][%player] §7hat das Spiel betreten."
+  leave: " §c« §r[%group][%player] §7hat das Spiel verlassen."
+  full: "§e┃ [%key:prefix] §8» §cDie Runde ist voll!"
+  
+  counter:
+    stop: "§e┃ [%key:prefix] §8» §cDer Countdown wurde abgebrochen, da ein Spieler die Runde verlassen hat und die Mindestspieleranzahl nicht mehr erfüllt wird."
+    x: "§e┃ [%key:prefix] §8» §7Das Spiel startet in §e[%time] Sekunden§7."
+    1: "§e┃ [%key:prefix] §8» §7Das Spiel startet in §eeiner Sekunde§7."
+    
+game:
+  start: "§e┃ [%key:prefix] §8» §eDas Spiel wurde gestartet."
+  inteam: "§e┃ [%key:prefix] §8» §7Du bist in [%teamcolor]Team [%team]§7."
+  
+  team:
+    0:
+      name: "Blau"
+      color: "§9"
+      prefix: "[%key:*.color]"
+      suffix: ""
+      sortId: "0001"
+    1:
+      name: "Rot"
+      color: "§c"
+      prefix: "[%key:*.color]"
+      suffix: ""
+      sortId: "0002"
+  
+  spectatorlist:
+    prefix: "§7"
+    suffix: ""
+    sortId: "9900"
+
+  leave: "§e┃ [%key:prefix] §8» §r[%group][%player] §chat die Runde verlassen!"     
+  leaveteam: "§e┃ [%key:prefix] §8» §r[%teamcolor][%player] §chat die Runde verlassen!"
+  full: "§e┃ [%key:prefix] §8» §cDie Runde ist voll!"
+  
+  undecidedcounter:
+    xmin: "§e┃ [%key:prefix] §8» §aDas Spiel geht in §e[%time] §aMinuten Unentschieden aus."
+    xsec: "§e┃ [%key:prefix] §8» §aDas Spiel geht in §e[%time] §aSekunden Unentschieden aus."
+    1: "§e┃ [%key:prefix] §8» §aDas Spiel geht in §eeiner §aSekunde Unentschieden aus."
+
+end:
+  join: " §a» §r[%group][%player] §7hat das Spiel betreten."
+  leave: " §c« §r[%group][%player] §7hat das Spiel verlassen."
+  full: "§e┃ [%key:prefix] §8» §cDie Runde ist voll!"
+  
+  undecided: "§e┃ [%key:prefix] §8» §aDas Spiel ist §eUnentschieden§a! Niemand hat gewonnen."
+  won: "§e┃ [%key:prefix] §8» [%group][%player] §ahat das Spiel gewonnen!\n§r§e┃ [%key:prefix] §8» §eRundenzeit: §a[%time]"
+  wonteam: "§e┃ [%key:prefix] §8» [%teamcolor]Team [%team] §ahat das Spiel gewonnen! §7([%players]§7)\n§r§e┃ [%key:prefix] §8» §eRundenzeit: §a[%time]"
+  wontimeformat: "mm:ss"
+  wonplayerlist: "§r[%group][%player]"
+  wonplayerjoin: "§7, "
+  
+  counter:
+    x: "§e┃ [%key:prefix] §8» §cDer Server startet in §e[%time] Sekunden §cneu."
+    1: "§e┃ [%key:prefix] §8» §cDer Server startet in §eeiner Sekunde §cneu."
+    
+  kick: "§cDer Server wird neu gestartet!"
+  
+team:
+  join: "§e┃ [%key:prefix] §8» §aDu bist nun in [%teamcolor]Team [%team]§a."
+  leave: "§e┃ [%key:prefix] §8» §cDu hast das [%teamcolor]Team [%team] §cverlassen."
+  full: "§e┃ [%key:prefix] §8» §4Fehler: §cDieses Team ist bereits voll!"
+
+vote:
+  successful: "§e┃ [%key:prefix] §8» §aDu hast für die Map §e[%map] §agestimmt."
+  already: "§e┃ [%key:prefix] §8» §cDu hast für diese Map bereits gestimmt."
+  
+item:
+  leave: "§m§cSpiel verlassen"
+  team: "§cWähle dein Team"
+  vote: "§aWähle deinen Mapwunsch"
+  compass: "§7Navigator"
+  
+inventory:
+  leave:
+    title: "§4Spiel verlassen?"
+    confirm: "§cSpiel verlassen"
+    cancel: "§cAbbruch"
+  team:
+    title: "§cWähle dein Team"
+    select: "[%teamcolor]Team [%team] §7([%current]/[%size] Spieler)"
+    selectlore: " §8» §r[%group][%player]"
+  vote:
+    title: "§aWähle eine Map"
+    mapname: "§f[%map]"
+    lore: "§aAbstimmungen: §e[%votes]\n§5Erbauer: §f[%builder]"
+  compass:
+    title: "§cNavigator"
+    playername: "[%teamcolor][%player]"
+    playerlore: "§7Linksklick §8» §7Teleportieren\n§r§7Rechtsklick §8» §7Spielersicht"
+    
+cmd:
+  nopermission: "§e┃ [%key:prefix] §8» §4Fehler: §cFür diesen Befehl hast du keine Rechte!"
+  start:
+    alreadyrunning: "§e┃ [%key:prefix] §8» §4Fehler: §cDas Spiel läuft bereits!"
+    alreadystarted: "§e┃ [%key:prefix] §8» §4Fehler: §cDas Spiel wurde bereits gestartet!"
+    notenoughplayers: "§e┃ [%key:prefix] §8» §4Fehler: §cDas Spiel hat zu wenige Spieler zum Starten!"
+    successful: "§e┃ [%key:prefix] §8» §aDas Spiel wird gestartet."
+  forcemap:
+    successful: "§e┃ §dGame §8» §7Du hast die Map auf §e[%map] §7geändert."
+    usage: "§e┃ §dGame §8» §cBenutze: §7/forcemap <Map>"
+    unknownmap: "§e┃ §dGame §8» §4Fehler: §cDiese Map ist uns nicht bekannt."
+    alreadyselected: "§e┃ §dGame §8» §4Fehler: §cDiese Map wurde bereits ausgewählt!"
+    alreadyimported: "§e┃ §dGame §8» §4Fehler: §cDu kannst die Map nicht mehr ändern!"
+    maps: "§e┃ §dGame §8» §7Folgende Maps können gewählt werden: [%maps]"
+    maplist: "§e[%map]"
+    mapjoin: "§7, "
+  stats:
+    all:
+      usage: "§e┃ §dGame §8» §cBenutze:§7 /statsall <Spieler>"
+      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      ownnotfound: "§e┃ §dGame §8» §cDu hast diesen Modus noch nie gespielt."
+      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      notfound: "§e┃ §dGame §8» §e[%player] §chat diesen Modus noch nie gespielt."
+      noposition: "§e┃ §dGame §8» §cDer Platz §e[%position] §ckonnte nicht gefunden werden."
+    month:
+      usage: "§e┃ §dGame §8» §cBenutze:§7 /stats <Spieler>"
+      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      ownnotfound: "§e┃ §dGame §8» §cDu hast diesen Modus noch nie gespielt."
+      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      notfound: "§e┃ §dGame §8» §e[%player] §chat diesen Modus noch nie gespielt."
+      noposition: "§e┃ §dGame §8» §cDer Platz §e[%position] §ckonnte nicht gefunden werden."

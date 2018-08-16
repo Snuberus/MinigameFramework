@@ -1,0 +1,33 @@
+language:
+  all:
+    - "de_DE"
+  default: "de_DE"
+  
+database:
+  host: "localhost"
+  port: 3306
+  database: "minecraft"
+  username: "root"
+  password: ""
+  usertable: "gameusers"
+  statstable: "gamestats"
+  
+maps:
+  2x2:
+    Test:
+      probability: 1
+      builder: "EagleFamily.net - Bauteam"
+      material: "SPONGE"
+    Test2:
+      probability: 1
+      builder: "EagleFamily.net - Bauteam"
+      material: "PAPER"
+team:
+  0:
+    color: 3
+  1:
+    color: 14
+
+lobby:
+  world: "Lobby"
+  spawn: "0.5:64:0.5:-90:0"
