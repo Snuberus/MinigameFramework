@@ -20,6 +20,6 @@ public class GamemasterCmd {
 			return;
 		}
 
-		sender.sendMessage("DEBUG Gamemaster");
+		
 	}
 }

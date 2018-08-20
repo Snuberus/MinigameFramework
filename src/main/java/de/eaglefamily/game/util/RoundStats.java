@@ -50,7 +50,7 @@ public class RoundStats {
 
 	public void addStats(String stats, double value) {
 		if (value == 0) return;
-		double oldValue = (double) statsValues.get(stats);
+		double oldValue = (double) statsValues.get(getStats(stats));
 		statsValues.put(getStatsParameter(stats), oldValue + value);
 	}
 
