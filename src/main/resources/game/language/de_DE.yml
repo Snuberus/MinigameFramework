@@ -7,11 +7,11 @@ locked:
   ending: "§e┃ [%key:prefix] §8» §cDie Runde endet gerade."
 
 chat: 
-  default: "§r[%group][%player] §8» §7[%message]"
+  default: "§r[%group][%player] §8» §7"
   team:
-    private: "§r[%teamcolor][%player] §8» §7[%message]"
-    all: "§8[§7@all§8] §r[%teamcolor][%player] §8» §7[%message]"
-  spectator: "§8[§7Spectator§8] [%group][%player] §8» §7[%message]"
+    private: "§r[%teamcolor][%player] §8» §7"
+    all: "§8[§7@all§8] §r[%teamcolor][%player] §8» §7"
+  spectator: "§8[§7Spectator§8] [%group][%player] §8» §7"
   
 map: 
   show: "§e┃ [%key:prefix] §8» §aMap §7» §e[%map] §avon §c[%builder]"
@@ -69,6 +69,8 @@ game:
 
   leave: "§e┃ [%key:prefix] §8» §r[%group][%player] §chat die Runde verlassen!"     
   leaveteam: "§e┃ [%key:prefix] §8» §r[%teamcolor][%player] §chat die Runde verlassen!"
+  rejoin: "§e┃ [%key:prefix] §8» §r[%group][%player] §7ist der Runde wieder beigetreten!"
+  rejointeam: "§e┃ [%key:prefix] §8» §r[%teamcolor][%player] §7ist der Runde wieder beigetreten!"
   full: "§e┃ [%key:prefix] §8» §cDie Runde ist voll!"
   
   undecidedcounter:
@@ -144,17 +146,35 @@ cmd:
     maplist: "§e[%map]"
     mapjoin: "§7, "
   stats:
+    true: "§a✔"
+    false: "§c✘"
     all:
       usage: "§e┃ §dGame §8» §cBenutze:§7 /statsall <Spieler>"
-      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%death]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%win]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
       ownnotfound: "§e┃ §dGame §8» §cDu hast diesen Modus noch nie gespielt."
-      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%death]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%win]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
       notfound: "§e┃ §dGame §8» §e[%player] §chat diesen Modus noch nie gespielt."
       noposition: "§e┃ §dGame §8» §cDer Platz §e[%position] §ckonnte nicht gefunden werden."
     month:
       usage: "§e┃ §dGame §8» §cBenutze:§7 /stats <Spieler>"
-      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      showown: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%death]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%win]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
       ownnotfound: "§e┃ §dGame §8» §cDu hast diesen Modus noch nie gespielt."
-      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%deaths]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%wins]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
+      show: "§8§m------------------------------------\n§r §8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bEliminierungen§7: §6[%kills]\n§r§e┃ §dGame §8» §bTode§7: §6[%death]\n§r§e┃ §dGame §8» §bKD/r§7: §6[%kd]\n§r§e┃ §dGame §8» §bGewonnene Spiele§7: §6[%win]\n§r§e┃ §dGame §8» §bGespielte Spiele§7: §6[%played]\n§r§8§m------------------------------------"
       notfound: "§e┃ §dGame §8» §e[%player] §chat diesen Modus noch nie gespielt."
       noposition: "§e┃ §dGame §8» §cDer Platz §e[%position] §ckonnte nicht gefunden werden."
+    round: "§8§m------------------------------------\n§r §8» §eStats der Runde §8«\n§r§e┃ §dGame §8» §bPlatz§7: §6#[%position]\n§r§e┃ §dGame §8» §bKills§7: §6[%kills]\n§r§e┃ §dGame §8» §bÜberlebt§7: §r[%survived]\n§r§e┃ §dGame §8» §bGewonnen§7: §r[%win]\n§r§8§m------------------------------------"
+hologram:
+  stats:
+    month: "§8» §eStats von §r[%player] §7(30 Tage) §8«\n§r§8» §bPlatz§7: §6#[%position]\n§r§8» §bKills§7: §6[%kills]\n§r§8» §bTode§7: §6[%death]\n§r§8» §bKD/r§7: §6[%kd]\n§r§8» §bGewonnene Spiele§7: §6[%win]\n§r§8» §bGespielte Spiele§7: §6[%played]"
+    all: "§8» §eStats von §r[%player] §7(insgesamt) §8«\n§r§8» §bPlatz§7: §6#[%position]\n§r§8» §bKills§7: §6[%kills]\n§r§8» §bTode§7: §6[%death]\n§r§8» §bKD/r§7: §6[%kd]\n§r§8» §bGewonnene Spiele§7: §6[%win]\n§r§8» §bGespielte Spiele§7: §6[%played]"
+    
+sign:
+  stats:
+    month:
+      description: " \n§rMonatliche\n§rStats\n§r "
+      show: "§8#[%position]\n§r§2[%player]\n§rWins: [%win]\n§rKD/r: [%kd]\n"
+      notfound: "§8#0\n§r \n§rWins: 0\n§rKD/r: 0"
+    all:
+      description: " \n§rAlltime\n§rStats\n§r "
+      show: "§8#[%position]\n§r§2[%player]\n§rWins: [%win]\n§rKD/r: [%kd]\n"
+      notfound: "§8#0\n§r \n§rWins: 0\n§rKD/r: 0"
