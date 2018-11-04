@@ -158,7 +158,7 @@ public class Inventories {
 		Game.getInstance().getGameTeams()
 				.forEach(gameTeam -> gameTeam.getPlayers().stream()
 						.filter(gP -> !gP.isSpectator() && gP.getPlayer().isOnline())
-						.forEach(gP -> inv.addItem(InventoryItems.player(gamePlayer, gP))));
+						.forEach(gP -> inv.addItem(InventoryItems.compassPlayer(gamePlayer, gP))));
 		return inv;
 	}
 }

@@ -109,7 +109,7 @@ public class InventoryItems {
 				.forEach(player -> player.getPlayer().openInventory(Inventories.vote(player)));
 	}
 
-	public static ItemStack player(GamePlayer gamePlayer, GamePlayer target) {
+	public static ItemStack compassPlayer(GamePlayer gamePlayer, GamePlayer target) {
 		return new ItemBuilder(Material.SKULL_ITEM, 1, (short) 3).setOwner(target.getPlayer())
 				.setDisplayName(gamePlayer.translateUTF("inventory.compass.playername", target.getReplaces(gamePlayer)))
 				.setLore(gamePlayer.translateUTF("inventory.compass.playerlore").split("\n")).onLeftClick(click -> {
@@ -117,6 +117,12 @@ public class InventoryItems {
 					Game.getInstance().getGamePlayer(click.getPlayer()).setCompassTarget(target);
 					click.getPlayer().teleport(target.getPlayer());
 				}).onRightClick(click -> {
+					if (GameState.getStatus() != GameState.INGAME) {
+						click.getPlayer().closeInventory();
+						Game.getInstance().getGamePlayer(click.getPlayer()).setCompassTarget(target);
+						click.getPlayer().teleport(target.getPlayer());
+						return;
+					}
 					click.getPlayer().closeInventory();
 					click.getPlayer().teleport(target.getPlayer());
 					Game.getInstance().getGamePlayer(click.getPlayer()).setCamera(target);
