@@ -55,6 +55,8 @@ public class Settings {
 	public static Consumer<StatsReplaces> statsReplaces = statsReplaces -> statsReplaces.accept(Lists.newArrayList());
 	public static Consumer<RoundStatsReplaces> roundStatsReplaces = statsReplaces -> statsReplaces
 			.accept(Lists.newArrayList());
+	
+	public static boolean rejoin = false;
 
 	public static String getSize() {
 		return Settings.numberOfTeams + "x" + Settings.numberOfPlayersPerTeam;

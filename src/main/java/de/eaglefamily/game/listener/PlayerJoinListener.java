@@ -20,6 +20,7 @@ import de.eaglefamily.bukkitlibrary.util.TaskManager;
 import de.eaglefamily.game.Game;
 import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.event.CheckGroupKickEvent;
+import de.eaglefamily.game.event.PlayerRejoinEvent;
 import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
@@ -97,13 +98,13 @@ public class PlayerJoinListener implements Listener {
 		switch (GameState.getStatus()) {
 		case LOBBY:
 			player.setGameMode(GameMode.ADVENTURE);
-			gamePlayer.updateTabListForOthers();
-			gamePlayer.updateTabList();
-			gamePlayer.setLobbyContents();
 			Game.getInstance().getGamePlayers().forEach(gP -> {
 				player.showPlayer(gP.getPlayer());
 				gP.getPlayer().showPlayer(player);
 			});
+			gamePlayer.updateTabListForOthers();
+			gamePlayer.updateTabList();
+			gamePlayer.setLobbyContents();
 			Game.getInstance().getGamePlayers().forEach(gP -> gP.send("lobby.join", gamePlayer.getReplaces(gP)));
 			if (Settings.teams) Actionbar.sendPermanentTranslation(player, "actionbar.selectteam");
 			gamePlayer.updateLobbySidebar();
@@ -112,21 +113,41 @@ public class PlayerJoinListener implements Listener {
 			TaskManager.runTaskLater(10, () -> Game.getInstance().getStatsManager().showStatsSign(gamePlayer));
 			break;
 		case INGAME:
+			if (Settings.rejoin) {
+				PlayerRejoinEvent playerRejoinEvent = new PlayerRejoinEvent(gamePlayer);
+				Bukkit.getPluginManager().callEvent(playerRejoinEvent);
+				if (!playerRejoinEvent.isCancelled()) {
+					gamePlayer.updateTabListForOthers();
+					gamePlayer.updateTabList();
+					if (Settings.gameContents) gamePlayer.setGameContents();
+					if (Settings.teams) Game.getInstance().getGamePlayers()
+							.forEach(gP -> gP.send("game.rejointeam", gamePlayer.getReplaces(gP)));
+					else Game.getInstance().getGamePlayers()
+							.forEach(gP -> gP.send("game.rejoin", gamePlayer.getReplaces(gP)));
+
+					Game.getInstance().getGamePlayers().stream().filter(gP -> gP.isSpectator())
+							.forEach(gP -> player.hidePlayer(gP.getPlayer()));
+					Game.getInstance().getGamePlayers().stream().filter(gP -> !gP.isSpectator())
+							.forEach(gP -> player.showPlayer(gP.getPlayer()));
+					Game.getInstance().getGamePlayers().forEach(gP -> gP.getPlayer().showPlayer(player));
+					break;
+				}
+			}
 			player.setGameMode(GameMode.SURVIVAL);
 			gamePlayer.setSpectator();
-			gamePlayer.updateTabList();
 			Game.getInstance().getGamePlayers().stream().filter(gP -> gP.isSpectator())
 					.forEach(gP -> player.hidePlayer(gP.getPlayer()));
+			gamePlayer.updateTabList();
 			break;
 		case END:
 			player.setGameMode(GameMode.SURVIVAL);
 			gamePlayer.setSpectator();
-			gamePlayer.updateTabListForOthers();
-			gamePlayer.updateTabList();
 			Game.getInstance().getGamePlayers().forEach(gP -> {
 				player.showPlayer(gP.getPlayer());
 				gP.getPlayer().showPlayer(player);
 			});
+			gamePlayer.updateTabListForOthers();
+			gamePlayer.updateTabList();
 			Game.getInstance().getGamePlayers().forEach(gP -> gP.send("end.join", gamePlayer.getReplaces(gP)));
 			break;
 		default:
