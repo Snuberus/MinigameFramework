@@ -72,7 +72,7 @@ public class LobbyCountdown extends Counter {
 		}
 		if (!isRunning && Settings.playerForLobbyStart <= Game.getInstance().getGamePlayers().size()) {
 			start();
-			onSecond();
+			if (Settings.playersForLobbyShortStart > Game.getInstance().getGamePlayers().size()) onSecond();
 		}
 		if (isRunning && Settings.playersForLobbyShortStart <= Game.getInstance().getGamePlayers().size()) {
 			lobbyShortStart();
