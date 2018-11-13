@@ -13,14 +13,9 @@ import lombok.Getter;
  */
 public class LobbyCountdownEvent {
 
-	private static final HandlerList HANDLERS = new HandlerList();
-
-	public static HandlerList getHandlerList() {
-		return HANDLERS;
-	}
-
 	public static class LobbyTickEvent extends Event {
 
+		private static final HandlerList HANDLERS = new HandlerList();
 		@Getter
 		private int counter;
 
@@ -31,9 +26,15 @@ public class LobbyCountdownEvent {
 		public HandlerList getHandlers() {
 			return HANDLERS;
 		}
+
+		public static HandlerList getHandlerList() {
+			return HANDLERS;
+		}
 	}
 
 	public static class LobbySecondEvent extends Event {
+
+		private static final HandlerList HANDLERS = new HandlerList();
 		@Getter
 		private int counter;
 
@@ -46,6 +47,10 @@ public class LobbyCountdownEvent {
 		}
 
 		public HandlerList getHandlers() {
+			return HANDLERS;
+		}
+
+		public static HandlerList getHandlerList() {
 			return HANDLERS;
 		}
 	}

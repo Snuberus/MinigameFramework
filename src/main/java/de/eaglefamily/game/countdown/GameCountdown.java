@@ -29,7 +29,6 @@ public class GameCountdown extends Counter {
 	public void onSecond() {
 
 		if (getCountdown() <= 0) {
-			stop();
 			Game.getInstance().endPlayer(null);
 			return;
 		}
