@@ -225,6 +225,7 @@ public class Game {
 		sendRoundStats();
 		showSpectators();
 
+		gameCountdown.stop();
 		endCountdown.start();
 
 		GameState.setStatus(GameState.END);
@@ -265,6 +266,7 @@ public class Game {
 		sendRoundStats();
 		showSpectators();
 
+		gameCountdown.stop();
 		endCountdown.start();
 
 		GameState.setStatus(GameState.END);
