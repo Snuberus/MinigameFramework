@@ -3,8 +3,12 @@
  */
 package de.eaglefamily.game.countdown;
 
+import org.bukkit.Bukkit;
+
 import de.eaglefamily.bukkitlibrary.language.Message;
 import de.eaglefamily.game.Game;
+import de.eaglefamily.game.event.EndCountdownEvent.EndSecondEvent;
+import de.eaglefamily.game.event.EndCountdownEvent.EndTickEvent;
 import de.eaglefamily.game.util.Settings;
 
 /**
@@ -12,6 +16,16 @@ import de.eaglefamily.game.util.Settings;
  */
 public class EndCountdown extends Counter {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.eaglefamily.game.countdown.Counter#onTick()
+	 */
+	@Override
+	protected void onTick() {
+		Bukkit.getPluginManager().callEvent(new EndTickEvent(counter));
+	}
+	
 	@Override
 	public void onSecond() {
 		if (getCountdown() <= 0) {
@@ -32,6 +46,7 @@ public class EndCountdown extends Counter {
 			Message.send("end.counter.x", "time", getCountdown());
 			break;
 		}
+		Bukkit.getPluginManager().callEvent(new EndSecondEvent(counter));
 	}
 
 	private int getCountdown() {

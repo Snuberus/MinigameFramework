@@ -3,11 +3,14 @@
  */
 package de.eaglefamily.game.countdown;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 
 import de.eaglefamily.bukkitlibrary.language.Message;
 import de.eaglefamily.game.Game;
 import de.eaglefamily.game.GamePlayer;
+import de.eaglefamily.game.event.LobbyCountdownEvent.LobbySecondEvent;
+import de.eaglefamily.game.event.LobbyCountdownEvent.LobbyTickEvent;
 import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
@@ -15,6 +18,16 @@ import de.eaglefamily.game.util.Settings;
  * @author _BlackEagle_
  */
 public class LobbyCountdown extends Counter {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.eaglefamily.game.countdown.Counter#onTick()
+	 */
+	@Override
+	protected void onTick() {
+		Bukkit.getPluginManager().callEvent(new LobbyTickEvent(counter));
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -56,6 +69,7 @@ public class LobbyCountdown extends Counter {
 		if (getCountdown() == Settings.lobbyShortStart - 1) Game.getInstance().prepareGame();
 
 		Game.getInstance().getGamePlayers().forEach(GamePlayer::updateLobbySidebar);
+		Bukkit.getPluginManager().callEvent(new LobbySecondEvent(counter));
 	}
 
 	public void update() {
