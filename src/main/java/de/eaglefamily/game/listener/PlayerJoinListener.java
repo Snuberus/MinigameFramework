@@ -20,6 +20,7 @@ import de.eaglefamily.bukkitlibrary.util.TaskManager;
 import de.eaglefamily.game.Game;
 import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.event.CheckGroupKickEvent;
+import de.eaglefamily.game.event.GamePlayerCreatedEvent;
 import de.eaglefamily.game.event.PlayerRejoinEvent;
 import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
@@ -86,8 +87,10 @@ public class PlayerJoinListener implements Listener {
 		event.setJoinMessage("");
 		Player player = event.getPlayer();
 		GamePlayer createGamePlayer = Game.getInstance().getPlayerManager().getOfflinePlayer(player.getUniqueId());
-		if (createGamePlayer == null) createGamePlayer = new GamePlayer(player);
-		else createGamePlayer.setPlayer(player);
+		if (createGamePlayer == null) {
+			createGamePlayer = new GamePlayer(player);
+			Bukkit.getPluginManager().callEvent(new GamePlayerCreatedEvent(createGamePlayer));
+		} else createGamePlayer.setPlayer(player);
 		Game.getInstance().getPlayerManager().addGamePlayer(createGamePlayer);
 		GamePlayer gamePlayer = createGamePlayer;
 		Game.getInstance().getPlayerManager().updatePlayerData(gamePlayer);
