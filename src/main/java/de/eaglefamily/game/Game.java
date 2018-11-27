@@ -254,6 +254,7 @@ public class Game {
 			replaces.add(playerList);
 			gP.send("end.wonteam", replaces.toArray());
 			gP.updateTabListForOthers();
+			gP.getPlayer().setAllowFlight(true);
 		});
 		else getGamePlayers().forEach(gP -> {
 			SimpleDateFormat format = new SimpleDateFormat(gP.translateUTF("end.wontimeformat"));
@@ -262,6 +263,7 @@ public class Game {
 			replaces.add(format.format(getGameCountdown().getCounter() / 20 * 1000));
 			gP.send("end.undecided", replaces.toArray());
 			gP.updateTabListForOthers();
+			gP.getPlayer().setAllowFlight(true);
 		});
 		sendRoundStats();
 		showSpectators();
