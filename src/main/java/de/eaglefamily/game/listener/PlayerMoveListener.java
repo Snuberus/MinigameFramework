@@ -27,7 +27,7 @@ public class PlayerMoveListener implements Listener {
 			player.teleport(gamePlayer.getSpectating().getPlayer());
 			return;
 		}
-		gamePlayer.getSpectators().stream().filter(gP -> gP.isCameraReseted()).forEach(gP -> gP.setCamera(gamePlayer));
+		gamePlayer.getSpectators().stream().filter(gP -> gP.isCameraReseted()).forEach(gP -> gP.updateCamera(gamePlayer));
 		gamePlayer.getSpectators().forEach(gP -> gP.getPlayer().teleport(event.getTo()));
 		Game.getInstance().getGamePlayers().stream().filter(gP -> gP.getCompassTarget() == gamePlayer)
 				.forEach(gP -> gP.getPlayer().setCompassTarget(event.getTo()));

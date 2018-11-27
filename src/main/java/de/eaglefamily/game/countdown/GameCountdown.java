@@ -48,7 +48,7 @@ public class GameCountdown extends Counter {
 			break;
 		case 120:
 		case 300:
-			Message.send("game.undecidedcounter.xmin", "time", getCountdown());
+			Message.send("game.undecidedcounter.xmin", "time", getCountdown() / 60);
 			break;
 		}
 

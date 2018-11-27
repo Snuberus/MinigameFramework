@@ -308,27 +308,30 @@ public class GamePlayer {
 		Actionbar.sendPermanentTranslation(player, "actionbar.spectating", gamePlayer.getReplaces(this));
 		Title.sendTranslation(player, "title.spectating", "title.spectatingsub", 8, 12, 8,
 				gamePlayer.getReplaces(this));
-
-		PacketPlayOutCamera camera = new PacketPlayOutCamera(gamePlayer.getEntityPlayer());
-		sendPacket(camera);
-
+		updateCamera(gamePlayer);
 		spectating = gamePlayer;
 		cameraReseted = false;
 	}
 
 	public void removeCamera() {
 		resetCamera();
+		player.removePotionEffect(PotionEffectType.INVISIBILITY);
+		setSpectatorContents();
 		Actionbar.sendPermanentTranslation(player, "actionbar.spectator");
 		spectating = null;
 		cameraReseted = false;
+	}
+
+	public void updateCamera(GamePlayer gamePlayer) {
+		PacketPlayOutCamera camera = new PacketPlayOutCamera(gamePlayer.getEntityPlayer());
+		sendPacket(camera);
+		player.teleport(gamePlayer.getPlayer());
 	}
 
 	public void resetCamera() {
 		PacketPlayOutCamera packet = new PacketPlayOutCamera(getEntityPlayer());
 		sendPacket(packet);
 		player.teleport(spectating.getPlayer());
-		player.removePotionEffect(PotionEffectType.INVISIBILITY);
-		setSpectatorContents();
 	}
 
 	public List<GamePlayer> getSpectators() {

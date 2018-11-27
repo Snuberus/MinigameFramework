@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
 import com.google.common.collect.Lists;
@@ -33,6 +34,6 @@ public class GameStartEndListener implements Listener {
 
 	@EventHandler
 	public void onGameEnd(GameEndingPlayerEvent event) {
-		gameListener.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, Game.getPlugin()));
+		gameListener.forEach(HandlerList::unregisterAll);
 	}
 }
