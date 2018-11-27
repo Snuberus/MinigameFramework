@@ -14,6 +14,7 @@ import com.google.common.collect.Lists;
 
 import de.eaglefamily.game.Game;
 import de.eaglefamily.game.event.GameEndingPlayerEvent;
+import de.eaglefamily.game.event.GameEndingTeamEvent;
 import de.eaglefamily.game.event.GameStartEvent;
 
 /**
@@ -33,7 +34,12 @@ public class GameStartEndListener implements Listener {
 	}
 
 	@EventHandler
-	public void onGameEnd(GameEndingPlayerEvent event) {
+	public void onGameEndPlayer(GameEndingPlayerEvent event) {
+		gameListener.forEach(HandlerList::unregisterAll);
+	}
+
+	@EventHandler
+	public void onGameEndTeam(GameEndingTeamEvent event) {
 		gameListener.forEach(HandlerList::unregisterAll);
 	}
 }
