@@ -6,6 +6,7 @@ package de.eaglefamily.game.listener;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -20,7 +21,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class EntityDamageListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamage(EntityDamageEvent event) {
 		switch (GameState.getStatus()) {
 		case LOBBY:
@@ -53,7 +54,7 @@ public class EntityDamageListener implements Listener {
 				return;
 			}
 		}
-		if(!Settings.teams) return;
+		if (!Settings.teams) return;
 		if (Settings.friendlyFire) return;
 		if (!(event.getEntity() instanceof Player)) return;
 		if (event.getDamager() instanceof Projectile) {

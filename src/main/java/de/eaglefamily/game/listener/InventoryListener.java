@@ -5,6 +5,7 @@ package de.eaglefamily.game.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -18,7 +19,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class InventoryListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 		switch (GameState.getStatus()) {
@@ -37,7 +38,7 @@ public class InventoryListener implements Listener {
 		}
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryDrag(InventoryDragEvent event) {
 		Player player = (Player) event.getWhoClicked();
 		switch (GameState.getStatus()) {

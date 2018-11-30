@@ -5,6 +5,7 @@ package de.eaglefamily.game.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -18,7 +19,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerToggleSneakListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		if (!event.isSneaking()) return;
@@ -28,7 +29,7 @@ public class PlayerToggleSneakListener implements Listener {
 		gamePlayer.removeCamera();
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();

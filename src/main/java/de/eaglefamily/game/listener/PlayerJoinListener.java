@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -30,7 +31,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class PlayerJoinListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
 		if (Bukkit.getPlayer(event.getUniqueId()) != null) {
 			event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, Translation.translateUTF("", "alreadyonline"));
@@ -73,7 +74,7 @@ public class PlayerJoinListener implements Listener {
 		return checkGroupKickEvent.isKicked();
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Player player = event.getPlayer();
 		Bukkit.getOnlinePlayers().forEach(target -> {
@@ -82,7 +83,7 @@ public class PlayerJoinListener implements Listener {
 		});
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.setJoinMessage("");
 		Player player = event.getPlayer();

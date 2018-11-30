@@ -18,7 +18,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class PlayerRespawnListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		Player player = event.getPlayer();
 		GamePlayer gamePlayer = Game.getInstance().getGamePlayer(player);

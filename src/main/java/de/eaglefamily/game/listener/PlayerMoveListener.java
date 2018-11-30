@@ -5,6 +5,7 @@ package de.eaglefamily.game.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -18,7 +19,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerMoveListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();
@@ -27,13 +28,14 @@ public class PlayerMoveListener implements Listener {
 			player.teleport(gamePlayer.getSpectating().getPlayer());
 			return;
 		}
-		gamePlayer.getSpectators().stream().filter(gP -> gP.isCameraReseted()).forEach(gP -> gP.updateCamera(gamePlayer));
+		gamePlayer.getSpectators().stream().filter(gP -> gP.isCameraReseted())
+				.forEach(gP -> gP.updateCamera(gamePlayer));
 		gamePlayer.getSpectators().forEach(gP -> gP.getPlayer().teleport(event.getTo()));
 		Game.getInstance().getGamePlayers().stream().filter(gP -> gP.getCompassTarget() == gamePlayer)
 				.forEach(gP -> gP.getPlayer().setCompassTarget(event.getTo()));
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerTeleport(PlayerTeleportEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();

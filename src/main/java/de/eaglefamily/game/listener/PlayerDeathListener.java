@@ -5,6 +5,7 @@ package de.eaglefamily.game.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
@@ -17,7 +18,7 @@ import de.eaglefamily.game.GamePlayer;
  */
 public class PlayerDeathListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		event.setDeathMessage("");
 		Player player = event.getEntity();

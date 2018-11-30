@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -23,7 +24,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerInteractListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (isInteractAllowed(event.getAction(), event.getClickedBlock(), event.getItem())) return;
 		switch (GameState.getStatus()) {
@@ -54,7 +55,7 @@ public class PlayerInteractListener implements Listener {
 		return true;
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
 		switch (GameState.getStatus()) {
 		case LOBBY:
@@ -68,7 +69,7 @@ public class PlayerInteractListener implements Listener {
 			GamePlayer gamePlayer = Game.getInstance().getGamePlayer(player);
 			if (!gamePlayer.isSpectator() || gamePlayer.getSpectating() != null) break;
 			event.setCancelled(true);
-			if(player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) break;
+			if (player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) break;
 			if (!(event.getRightClicked() instanceof Player)) break;
 			Player target = (Player) event.getRightClicked();
 			GamePlayer gameTarget = Game.getInstance().getGamePlayer(target);

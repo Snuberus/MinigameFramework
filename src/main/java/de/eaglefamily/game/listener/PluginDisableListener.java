@@ -4,6 +4,7 @@
 package de.eaglefamily.game.listener;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 
@@ -14,7 +15,7 @@ import de.eaglefamily.game.Game;
  */
 public class PluginDisableListener implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPluginDisable(PluginDisableEvent event) {
 		if (event.getPlugin() != Game.getPlugin()) return;
 		Game.getInstance().shutdown();

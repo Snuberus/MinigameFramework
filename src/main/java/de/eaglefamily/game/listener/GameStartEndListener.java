@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -28,17 +29,17 @@ public class GameStartEndListener implements Listener {
 		gameListener.add(listener);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onGameStart(GameStartEvent event) {
 		gameListener.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, Game.getPlugin()));
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onGameEndPlayer(GameEndingPlayerEvent event) {
 		gameListener.forEach(HandlerList::unregisterAll);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onGameEndTeam(GameEndingTeamEvent event) {
 		gameListener.forEach(HandlerList::unregisterAll);
 	}
