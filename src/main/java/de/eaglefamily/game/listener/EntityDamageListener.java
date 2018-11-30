@@ -21,7 +21,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class EntityDamageListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onEntityDamage(EntityDamageEvent event) {
 		switch (GameState.getStatus()) {
 		case LOBBY:

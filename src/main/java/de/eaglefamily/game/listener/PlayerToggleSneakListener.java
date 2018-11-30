@@ -19,7 +19,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerToggleSneakListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		if (!event.isSneaking()) return;
@@ -29,7 +29,7 @@ public class PlayerToggleSneakListener implements Listener {
 		gamePlayer.removeCamera();
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();

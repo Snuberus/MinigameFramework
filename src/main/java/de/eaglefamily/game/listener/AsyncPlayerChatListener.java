@@ -28,7 +28,7 @@ public class AsyncPlayerChatListener implements Listener {
 
 	private final List<String> ALL = Lists.newArrayList("@all ", "@all", "@a ", "@a", "@ ", "@");
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onChat(AsyncPlayerChatEvent event) {
 		event.setCancelled(true);
 		Player player = event.getPlayer();

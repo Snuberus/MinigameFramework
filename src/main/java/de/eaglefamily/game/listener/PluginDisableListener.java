@@ -15,7 +15,7 @@ import de.eaglefamily.game.Game;
  */
 public class PluginDisableListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPluginDisable(PluginDisableEvent event) {
 		if (event.getPlugin() != Game.getPlugin()) return;
 		Game.getInstance().shutdown();

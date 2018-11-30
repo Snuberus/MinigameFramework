@@ -25,7 +25,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class PlayerQuitListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		event.setQuitMessage("");
 		Player player = event.getPlayer();

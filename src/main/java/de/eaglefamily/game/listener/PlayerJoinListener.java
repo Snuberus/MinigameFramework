@@ -31,7 +31,7 @@ import de.eaglefamily.game.util.Settings;
  */
 public class PlayerJoinListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
 		if (Bukkit.getPlayer(event.getUniqueId()) != null) {
 			event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, Translation.translateUTF("", "alreadyonline"));
@@ -74,7 +74,7 @@ public class PlayerJoinListener implements Listener {
 		return checkGroupKickEvent.isKicked();
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Player player = event.getPlayer();
 		Bukkit.getOnlinePlayers().forEach(target -> {
@@ -83,7 +83,7 @@ public class PlayerJoinListener implements Listener {
 		});
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.setJoinMessage("");
 		Player player = event.getPlayer();

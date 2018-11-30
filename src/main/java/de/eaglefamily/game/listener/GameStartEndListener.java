@@ -29,17 +29,17 @@ public class GameStartEndListener implements Listener {
 		gameListener.add(listener);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onGameStart(GameStartEvent event) {
 		gameListener.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, Game.getPlugin()));
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onGameEndPlayer(GameEndingPlayerEvent event) {
 		gameListener.forEach(HandlerList::unregisterAll);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onGameEndTeam(GameEndingTeamEvent event) {
 		gameListener.forEach(HandlerList::unregisterAll);
 	}

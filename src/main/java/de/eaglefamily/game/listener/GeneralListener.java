@@ -76,146 +76,146 @@ public class GeneralListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onFoodLevelChange(FoodLevelChangeEvent event) {
 		checkCancelled(event, (Player) event.getEntity());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerPickupItem(PlayerPickupItemEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockBreak(BlockBreakEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockDamage(BlockDamageEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockPlace(BlockPlaceEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onEntityExplode(EntityExplodeEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onLeavesDecay(LeavesDecayEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onStructureGrow(StructureGrowEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockBurn(BlockBurnEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onVehicleDestroy(VehicleDestroyEvent event) {
 		if (!(event.getAttacker() instanceof Player)) checkCancelled(event);
 		else checkCancelled(event, (Player) event.getAttacker());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onVehicleDamage(VehicleDamageEvent event) {
 		if (!(event.getAttacker() instanceof Player)) checkCancelled(event);
 		else checkCancelled(event, (Player) event.getAttacker());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onVehicleEnter(VehicleEnterEvent event) {
 		if (!(event.getEntered() instanceof Player)) checkCancelled(event);
 		else checkCancelled(event, (Player) event.getEntered());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onHangingBreak(HangingBreakEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerBucket(PlayerBucketEmptyEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerBucket(PlayerBucketFillEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerBedEnter(PlayerBedEnterEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerItemConsume(PlayerItemConsumeEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerLeashEntity(PlayerLeashEntityEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerEditBook(PlayerEditBookEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerFish(PlayerFishEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerPortal(PlayerPortalEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerShearEntity(PlayerShearEntityEvent event) {
 		checkCancelled(event, event.getPlayer());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onEntityShootBow(EntityShootBowEvent event) {
 		if (!(event.getEntity() instanceof Player)) checkCancelled(event);
 		else checkCancelled(event, (Player) event.getEntity());
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onItemDespawn(ItemDespawnEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onFurnaceBurn(FurnaceBurnEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockPhysics(BlockPhysicsEvent event) {
 		checkCancelled(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockFromTo(BlockFromToEvent event) {
 		checkCancelled(event);
 	}

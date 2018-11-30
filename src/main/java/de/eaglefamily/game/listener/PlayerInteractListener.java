@@ -24,7 +24,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerInteractListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (isInteractAllowed(event.getAction(), event.getClickedBlock(), event.getItem())) return;
 		switch (GameState.getStatus()) {
@@ -55,7 +55,7 @@ public class PlayerInteractListener implements Listener {
 		return true;
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
 		switch (GameState.getStatus()) {
 		case LOBBY:

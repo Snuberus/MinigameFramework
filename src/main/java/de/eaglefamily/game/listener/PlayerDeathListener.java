@@ -18,7 +18,7 @@ import de.eaglefamily.game.GamePlayer;
  */
 public class PlayerDeathListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		event.setDeathMessage("");
 		Player player = event.getEntity();

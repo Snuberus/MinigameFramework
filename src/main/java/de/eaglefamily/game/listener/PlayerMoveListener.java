@@ -19,7 +19,7 @@ import de.eaglefamily.game.util.GameState;
  */
 public class PlayerMoveListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();
@@ -35,7 +35,7 @@ public class PlayerMoveListener implements Listener {
 				.forEach(gP -> gP.getPlayer().setCompassTarget(event.getTo()));
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerTeleport(PlayerTeleportEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		Player player = event.getPlayer();
