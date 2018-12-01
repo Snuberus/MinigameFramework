@@ -32,7 +32,6 @@ import de.eaglefamily.bukkitlibrary.language.Message;
 import de.eaglefamily.bukkitlibrary.player.Actionbar;
 import de.eaglefamily.bukkitlibrary.util.TaskManager;
 import de.eaglefamily.game.command.ForcemapCmd;
-import de.eaglefamily.game.command.GamemasterCmd;
 import de.eaglefamily.game.command.MapCmd;
 import de.eaglefamily.game.command.StartCmd;
 import de.eaglefamily.game.command.StatsAllCmd;
@@ -399,7 +398,6 @@ public class Game {
 
 	private void registerCommands() {
 		CommandManager.register(plugin, new ForcemapCmd());
-		CommandManager.register(plugin, new GamemasterCmd());
 		CommandManager.register(plugin, new MapCmd());
 		CommandManager.register(plugin, new StartCmd());
 		if (Settings.stats) {
