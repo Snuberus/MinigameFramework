@@ -1,5 +1,5 @@
 /*
- * reated by _BlackEagle_ on 31.07.2018 16:52:46
+ * Created by _BlackEagle_ on 31.07.2018 16:52:46
  */
 package de.eaglefamily.game.util;
 
