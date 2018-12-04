@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 30.07.2018 15:55:51
+/*
+ * Created by Jan on 30.07.2018 15:55:51
  */
 package de.eaglefamily.game.listener;
 
@@ -15,10 +15,20 @@ import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.util.GameState;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving playerToggleSneak events.
+ * When the playerToggleSneak event occurs, that object's appropriate method is
+ * invoked.
+ *
+ * @see PlayerToggleSneakEvent
  */
 public class PlayerToggleSneakListener implements Listener {
 
+	/**
+	 * On player toggle sneak.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
@@ -29,6 +39,12 @@ public class PlayerToggleSneakListener implements Listener {
 		gamePlayer.removeCamera();
 	}
 
+	/**
+	 * On player toggle flight.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;

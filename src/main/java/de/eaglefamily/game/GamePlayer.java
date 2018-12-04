@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 11:19:43
+/*
+ * Created by Jan on 24.07.2018 11:19:43
  */
 package de.eaglefamily.game;
 
@@ -48,40 +48,139 @@ import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketPlayOutCamera;
 
 /**
- * @author _BlackEagle_
+ * The Class GamePlayer.
+ *
+ * @author Jan
  */
 public class GamePlayer {
 
+	/**
+	 * Gets the player.
+	 *
+	 * @return the player
+	 */
 	@Getter
+	
+	/**
+	 * Sets the player.
+	 *
+	 * @param player
+	 *            the new player
+	 */
 	@Setter
 	private Player player;
+	
+	/**
+	 * Gets the uuid.
+	 *
+	 * @return the uuid
+	 */
 	@Getter
 	private final UUID uuid;
+	
+	/**
+	 * Gets the game team.
+	 *
+	 * @return the game team
+	 */
 	@Getter
 	private GameTeam gameTeam;
+	
+	/**
+	 * Checks if is spectator.
+	 *
+	 * @return true, if is spectator
+	 */
 	@Getter
 	private boolean spectator;
+	
+	/**
+	 * Checks if is game player.
+	 *
+	 * @return true, if is game player
+	 */
 	@Getter
+	
+	/**
+	 * Sets the game player.
+	 *
+	 * @param gamePlayer
+	 *            the new game player
+	 */
 	@Setter
 	private boolean gamePlayer;
+	
+	/**
+	 * Sets the spawn.
+	 *
+	 * @param spawn
+	 *            the new spawn
+	 */
 	@Setter
 	private Location spawn;
 
+	/**
+	 * Gets the spectating.
+	 *
+	 * @return the spectating
+	 */
 	@Getter
 	private GamePlayer spectating;
+	
+	/**
+	 * Checks if is camera reseted.
+	 *
+	 * @return true, if is camera reseted
+	 */
 	@Getter
+	
+	/**
+	 * Sets the camera reseted.
+	 *
+	 * @param cameraReseted
+	 *            the new camera reseted
+	 */
 	@Setter
 	private boolean cameraReseted;
+	
+	/**
+	 * Gets the compass target.
+	 *
+	 * @return the compass target
+	 */
 	@Getter
 	private GamePlayer compassTarget;
 
+	/**
+	 * Gets the lobby contents.
+	 *
+	 * @return the lobby contents
+	 */
 	@Getter
 	private final Map<Integer, ItemStack> lobbyContents = Maps.newHashMap();
+	
+	/**
+	 * Gets the spectator contents.
+	 *
+	 * @return the spectator contents
+	 */
 	@Getter
 	private final Map<Integer, ItemStack> spectatorContents = Maps.newHashMap();
+	
+	/**
+	 * Gets the game contents.
+	 *
+	 * @return the game contents
+	 */
 	@Getter
 	private final Map<Integer, ItemStack> gameContents = Maps.newHashMap();
 
+	/**
+	 * Instantiates a new game player.
+	 *
+	 * @param player
+	 *            the player
+	 */
 	public GamePlayer(Player player) {
 		this.player = player;
 		this.uuid = player.getUniqueId();
@@ -89,34 +188,87 @@ public class GamePlayer {
 		setDefaultSpectatorContents();
 	}
 
+	/**
+	 * Gets the craft player.
+	 *
+	 * @return the craft player
+	 */
 	public CraftPlayer getCraftPlayer() {
 		return (CraftPlayer) player;
 	}
 
+	/**
+	 * Gets the entity player.
+	 *
+	 * @return the entity player
+	 */
 	public EntityPlayer getEntityPlayer() {
 		return getCraftPlayer().getHandle();
 	}
 
+	/**
+	 * Send.
+	 *
+	 * @param key
+	 *            the key
+	 * @param replaces
+	 *            the replaces
+	 */
 	public void send(final String key, final Object... replaces) {
 		Message.send(player, key, replaces);
 	}
 
+	/**
+	 * Translate.
+	 *
+	 * @param key
+	 *            the key
+	 * @param replaces
+	 *            the replaces
+	 * @return the base component[]
+	 */
 	public BaseComponent[] translate(final String key, final Object... replaces) {
 		return Translation.translate(player, key, replaces);
 	}
 
+	/**
+	 * Translate UTF.
+	 *
+	 * @param key
+	 *            the key
+	 * @param replaces
+	 *            the replaces
+	 * @return the string
+	 */
 	public String translateUTF(final String key, final Object... replaces) {
 		return Translation.translateUTF(player, key, replaces);
 	}
 
+	/**
+	 * Send packet.
+	 *
+	 * @param packet
+	 *            the packet
+	 */
 	public void sendPacket(final Packet<?> packet) {
 		Packets.send(player, packet);
 	}
 
+	/**
+	 * Send packets.
+	 *
+	 * @param packets
+	 *            the packets
+	 */
 	public void sendPackets(final Packet<?>... packets) {
 		Packets.send(player, packets);
 	}
 
+	/**
+	 * Gets the spawn.
+	 *
+	 * @return the spawn
+	 */
 	public Location getSpawn() {
 		switch (GameState.getStatus()) {
 		case LOBBY:
@@ -136,11 +288,20 @@ public class GamePlayer {
 		}
 	}
 
+	/**
+	 * Teleport to spawn.
+	 */
 	public void teleportToSpawn() {
 		if (player.isInsideVehicle()) player.leaveVehicle();
 		player.teleport(getSpawn());
 	}
 
+	/**
+	 * Sets the game team.
+	 *
+	 * @param gameTeam
+	 *            the new game team
+	 */
 	public void setGameTeam(GameTeam gameTeam) {
 		if (this.gameTeam == gameTeam) return;
 		if (this.gameTeam != null) {
@@ -156,6 +317,9 @@ public class GamePlayer {
 		updateTabListForOthers();
 	}
 
+	/**
+	 * Sets the spectator.
+	 */
 	public void setSpectator() {
 		spectator = true;
 		getSpectators().forEach(gP -> gP.removeCamera());
@@ -175,6 +339,9 @@ public class GamePlayer {
 				.forEach(gP -> gP.getPlayer().openInventory(Inventories.compass(gP)));
 	}
 
+	/**
+	 * Reset.
+	 */
 	public void reset() {
 		player.setLevel(0);
 		player.setExp(0);
@@ -195,42 +362,92 @@ public class GamePlayer {
 		Title.reset(player);
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @param player
+	 *            the player
+	 * @return the name
+	 */
 	public String getName(Player player) {
 		CheckNameEvent event = new CheckNameEvent(player, this.player);
 		Bukkit.getPluginManager().callEvent(event);
 		return event.getName();
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the name
+	 */
 	public String getName(GamePlayer gamePlayer) {
 		return getName(gamePlayer.getPlayer());
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return getName(player);
 	}
 
+	/**
+	 * Gets the list name.
+	 *
+	 * @param player
+	 *            the player
+	 * @return the list name
+	 */
 	public ListName getListName(Player player) {
 		CheckListNameEvent event = new CheckListNameEvent(player, this.player);
 		Bukkit.getPluginManager().callEvent(event);
 		return event.getListName();
 	}
 
+	/**
+	 * Gets the list name.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the list name
+	 */
 	public ListName getListName(GamePlayer gamePlayer) {
 		return getListName(gamePlayer.getPlayer());
 	}
 
+	/**
+	 * Gets the list name.
+	 *
+	 * @return the list name
+	 */
 	public ListName getListName() {
 		return getListName(player);
 	}
 
+	/**
+	 * Update tab list.
+	 */
 	public void updateTabList() {
 		Game.getInstance().getGamePlayers().forEach(gP -> gP.updateTabListFor(this));
 	}
 
+	/**
+	 * Update tab list for others.
+	 */
 	public void updateTabListForOthers() {
 		Game.getInstance().getGamePlayers().forEach(gP -> updateTabListFor(gP));
 	}
 
+	/**
+	 * Update tab list for.
+	 *
+	 * @param gP
+	 *            the g P
+	 */
 	public void updateTabListFor(GamePlayer gP) {
 		switch (GameState.getStatus()) {
 		case LOBBY:
@@ -264,20 +481,46 @@ public class GamePlayer {
 		}
 	}
 
+	/**
+	 * Gets the group.
+	 *
+	 * @param player
+	 *            the player
+	 * @return the group
+	 */
 	public String getGroup(Player player) {
 		CheckGroupEvent event = new CheckGroupEvent(player, this.player);
 		Bukkit.getPluginManager().callEvent(event);
 		return event.getGroup();
 	}
 
+	/**
+	 * Gets the group.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the group
+	 */
 	public String getGroup(GamePlayer gamePlayer) {
 		return getGroup(gamePlayer.getPlayer());
 	}
 
+	/**
+	 * Gets the group.
+	 *
+	 * @return the group
+	 */
 	public String getGroup() {
 		return getGroup(player);
 	}
 
+	/**
+	 * Gets the replaces.
+	 *
+	 * @param player
+	 *            the player
+	 * @return the replaces
+	 */
 	public Object[] getReplaces(Player player) {
 		List<Object> replaces = Lists.newArrayList();
 		replaces.add("player");
@@ -288,14 +531,32 @@ public class GamePlayer {
 		return replaces.toArray();
 	}
 
+	/**
+	 * Gets the replaces.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the replaces
+	 */
 	public Object[] getReplaces(GamePlayer gamePlayer) {
 		return getReplaces(gamePlayer.getPlayer());
 	}
 
+	/**
+	 * Gets the replaces.
+	 *
+	 * @return the replaces
+	 */
 	public Object[] getReplaces() {
 		return getReplaces(player);
 	}
 
+	/**
+	 * Sets the camera.
+	 *
+	 * @param gamePlayer
+	 *            the new camera
+	 */
 	public void setCamera(GamePlayer gamePlayer) {
 		Player target = gamePlayer.getPlayer();
 		player.getInventory().clear();
@@ -313,6 +574,9 @@ public class GamePlayer {
 		cameraReseted = false;
 	}
 
+	/**
+	 * Removes the camera.
+	 */
 	public void removeCamera() {
 		resetCamera();
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
@@ -322,23 +586,43 @@ public class GamePlayer {
 		cameraReseted = false;
 	}
 
+	/**
+	 * Update camera.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 */
 	public void updateCamera(GamePlayer gamePlayer) {
 		PacketPlayOutCamera camera = new PacketPlayOutCamera(gamePlayer.getEntityPlayer());
 		sendPacket(camera);
 		player.teleport(gamePlayer.getPlayer());
 	}
 
+	/**
+	 * Reset camera.
+	 */
 	public void resetCamera() {
 		PacketPlayOutCamera packet = new PacketPlayOutCamera(getEntityPlayer());
 		sendPacket(packet);
 		player.teleport(spectating.getPlayer());
 	}
 
+	/**
+	 * Gets the spectators.
+	 *
+	 * @return the spectators
+	 */
 	public List<GamePlayer> getSpectators() {
 		return Game.getInstance().getGamePlayers().stream().filter(gP -> gP.getSpectating() == this)
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Sets the compass target.
+	 *
+	 * @param gamePlayer
+	 *            the new compass target
+	 */
 	public void setCompassTarget(GamePlayer gamePlayer) {
 		this.compassTarget = gamePlayer;
 		player.setCompassTarget(gamePlayer.getPlayer().getLocation());
@@ -359,48 +643,102 @@ public class GamePlayer {
 		addSpectatorContent(8, Items.leave(this));
 	}
 
+	/**
+	 * Sets the lobby contents.
+	 */
 	public void setLobbyContents() {
 		lobbyContents.forEach((slot, itemStack) -> {
 			player.getInventory().setItem(slot, itemStack);
 		});
 	}
 
+	/**
+	 * Sets the spectator contents.
+	 */
 	public void setSpectatorContents() {
 		spectatorContents.forEach((slot, itemStack) -> {
 			player.getInventory().setItem(slot, itemStack);
 		});
 	}
 
+	/**
+	 * Sets the game contents.
+	 */
 	public void setGameContents() {
 		gameContents.forEach((slot, itemStack) -> {
 			player.getInventory().setItem(slot, itemStack);
 		});
 	}
 
+	/**
+	 * Adds the lobby content.
+	 *
+	 * @param slot
+	 *            the slot
+	 * @param itemStack
+	 *            the item stack
+	 */
 	public void addLobbyContent(int slot, ItemStack itemStack) {
 		lobbyContents.put(slot, itemStack);
 	}
 
+	/**
+	 * Removes the lobby content.
+	 *
+	 * @param slot
+	 *            the slot
+	 */
 	public void removeLobbyContent(int slot) {
 		lobbyContents.remove(slot);
 	}
 
+	/**
+	 * Adds the spectator content.
+	 *
+	 * @param slot
+	 *            the slot
+	 * @param itemStack
+	 *            the item stack
+	 */
 	public void addSpectatorContent(int slot, ItemStack itemStack) {
 		spectatorContents.put(slot, itemStack);
 	}
 
+	/**
+	 * Removes the spectator content.
+	 *
+	 * @param slot
+	 *            the slot
+	 */
 	public void removeSpectatorContent(int slot) {
 		spectatorContents.remove(slot);
 	}
 
+	/**
+	 * Adds the game content.
+	 *
+	 * @param slot
+	 *            the slot
+	 * @param itemStack
+	 *            the item stack
+	 */
 	public void addGameContent(int slot, ItemStack itemStack) {
 		gameContents.put(slot, itemStack);
 	}
 
+	/**
+	 * Removes the game content.
+	 *
+	 * @param slot
+	 *            the slot
+	 */
 	public void removeGameContent(int slot) {
 		gameContents.remove(slot);
 	}
 
+	/**
+	 * Update lobby sidebar.
+	 */
 	public void updateLobbySidebar() {
 		if (GameState.getStatus() == GameState.STARTING) {
 			Sidebar.set(player, null, null);

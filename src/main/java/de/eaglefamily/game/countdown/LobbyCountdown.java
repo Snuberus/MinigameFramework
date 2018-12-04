@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 15:48:14
+/*
+ * Created by Jan on 24.07.2018 15:48:14
  */
 package de.eaglefamily.game.countdown;
 
@@ -15,7 +15,9 @@ import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Class LobbyCountdown.
+ *
+ * @author Jan
  */
 public class LobbyCountdown extends Counter {
 
@@ -72,6 +74,9 @@ public class LobbyCountdown extends Counter {
 		Bukkit.getPluginManager().callEvent(new LobbySecondEvent(counter));
 	}
 
+	/**
+	 * Update.
+	 */
 	public void update() {
 		if (GameState.getStatus() != GameState.LOBBY && isRunning) stop();
 		if (GameState.getStatus() != GameState.LOBBY) return;
@@ -93,12 +98,20 @@ public class LobbyCountdown extends Counter {
 		}
 	}
 
+	/**
+	 * Lobby short start.
+	 */
 	public void lobbyShortStart() {
 		if (getCountdown() > Settings.lobbyShortStart) counter = Settings.lobbyCountdown * 20
 				- Settings.lobbyShortStart * 20 - 1;
 
 	}
 
+	/**
+	 * Gets the countdown.
+	 *
+	 * @return the countdown
+	 */
 	public int getCountdown() {
 		return Settings.lobbyCountdown - counter / 20;
 	}

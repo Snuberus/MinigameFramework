@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 25.07.2018 17:38:55
+/*
+ * Created by Jan on 25.07.2018 17:38:55
  */
 package de.eaglefamily.game.listener;
 
@@ -11,10 +11,19 @@ import org.bukkit.event.server.PluginDisableEvent;
 import de.eaglefamily.game.Game;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving pluginDisable events. When
+ * the pluginDisable event occurs, that object's appropriate method is invoked.
+ *
+ * @see PluginDisableEvent
  */
 public class PluginDisableListener implements Listener {
 
+	/**
+	 * On plugin disable.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPluginDisable(PluginDisableEvent event) {
 		if (event.getPlugin() != Game.getPlugin()) return;

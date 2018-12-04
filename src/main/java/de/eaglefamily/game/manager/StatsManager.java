@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 18:38:24
+/*
+ * Created by Jan on 10.08.2018 18:38:24
  */
 package de.eaglefamily.game.manager;
 
@@ -33,13 +33,18 @@ import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.TileEntitySkull;
 
 /**
- * @author _BlackEagle_
+ * The Class StatsManager.
+ *
+ * @author Jan
  */
 public class StatsManager {
 
 	private final Map<GamePlayer, RoundStats> roundStats = Maps.newHashMap();
 	private final Map<UUID, Stats> stats = Maps.newHashMap();
 
+	/**
+	 * Instantiates a new stats manager.
+	 */
 	public StatsManager() {
 		for (int i = 1; i < 11; i++) {
 			final int position = i;
@@ -48,16 +53,37 @@ public class StatsManager {
 		}
 	}
 
+	/**
+	 * Save round stats.
+	 */
 	public void saveRoundStats() {
 		roundStats.entrySet().forEach(
 				entry -> Game.getInstance().getDatabase().setStats(entry.getKey().getUuid(), entry.getValue(), true));
 	}
 
+	/**
+	 * Gets the round stats.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the round stats
+	 */
 	public RoundStats getRoundStats(GamePlayer gamePlayer) {
 		if (!roundStats.containsKey(gamePlayer)) roundStats.put(gamePlayer, RoundStats.getEmpty(gamePlayer));
 		return roundStats.get(gamePlayer);
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @param time
+	 *            the time
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(UUID uuid, long time, Consumer<Stats> consumer) {
 		if (!stats.containsKey(uuid)) {
 			Game.getInstance().getDatabase().getStats(uuid, time, stats -> {
@@ -75,6 +101,17 @@ public class StatsManager {
 				roundStats.get(Game.getInstance().getPlayerManager().getGamePlayer(uuid))));
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @param days
+	 *            the days
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(UUID uuid, int days, Consumer<Stats> consumer) {
 		if (days == 0) getStats(uuid, 0l, consumer);
 		else {
@@ -83,10 +120,30 @@ public class StatsManager {
 		}
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(UUID uuid, Consumer<Stats> consumer) {
 		getStats(uuid, 0, consumer);
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param position
+	 *            the position
+	 * @param time
+	 *            the time
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(int position, long time, Consumer<Stats> consumer) {
 		if (!stats.values().stream().filter(stats -> stats.getPosition() == position).findFirst().isPresent()) {
 			Game.getInstance().getDatabase().getStats(position, time, stats -> {
@@ -107,6 +164,17 @@ public class StatsManager {
 				roundStats.get(Game.getInstance().getPlayerManager().getGamePlayer(databaseStats.getUuid()))));
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param position
+	 *            the position
+	 * @param days
+	 *            the days
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(int position, int days, Consumer<Stats> consumer) {
 		if (days == 0) getStats(position, 0l, consumer);
 		else {
@@ -115,6 +183,15 @@ public class StatsManager {
 		}
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param position
+	 *            the position
+	 * @param consumer
+	 *            the consumer
+	 * @return the stats
+	 */
 	public void getStats(int position, Consumer<Stats> consumer) {
 		getStats(position, 0l, consumer);
 	}
@@ -135,6 +212,12 @@ public class StatsManager {
 		return new Stats(databaseStats.getUuid(), databaseStats.getPosition(), statsValues);
 	}
 
+	/**
+	 * Show stats hologram.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 */
 	public void showStatsHologram(GamePlayer gamePlayer) {
 		getStats(gamePlayer.getUuid(), 30, stats -> hologram(gamePlayer, stats, "month"));
 		getStats(gamePlayer.getUuid(), stats -> hologram(gamePlayer, stats, "all"));
@@ -155,6 +238,12 @@ public class StatsManager {
 		});
 	}
 
+	/**
+	 * Show stats sign.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 */
 	public void showStatsSign(GamePlayer gamePlayer) {
 		descriptionSign(gamePlayer, "month");
 		descriptionSign(gamePlayer, "all");
@@ -217,6 +306,19 @@ public class StatsManager {
 		}, true);
 	}
 
+	/**
+	 * Gets the stats replaces.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the stats replaces
+	 */
 	public Object[] getStatsReplaces(CommandSender sender, Stats stats, String name, List<Object> statsReplaces) {
 		statsReplaces.add("player");
 		statsReplaces.add(name);
@@ -229,14 +331,53 @@ public class StatsManager {
 		return statsReplaces.toArray();
 	}
 
+	/**
+	 * Gets the stats replaces.
+	 *
+	 * @param player
+	 *            the player
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the stats replaces
+	 */
 	public Object[] getStatsReplaces(Player player, Stats stats, String name, List<Object> statsReplaces) {
 		return getStatsReplaces((CommandSender) player, stats, name, statsReplaces);
 	}
 
+	/**
+	 * Gets the stats replaces.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the stats replaces
+	 */
 	public Object[] getStatsReplaces(GamePlayer gamePlayer, Stats stats, String name, List<Object> statsReplaces) {
 		return getStatsReplaces(gamePlayer.getPlayer(), stats, name, statsReplaces);
 	}
 
+	/**
+	 * Gets the round stats replaces.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the round stats replaces
+	 */
 	public Object[] getRoundStatsReplaces(CommandSender sender, RoundStats stats, String name,
 			List<Object> statsReplaces) {
 		statsReplaces.add("player");
@@ -252,10 +393,36 @@ public class StatsManager {
 		return statsReplaces.toArray();
 	}
 
+	/**
+	 * Gets the round stats replaces.
+	 *
+	 * @param player
+	 *            the player
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the round stats replaces
+	 */
 	public Object[] getRoundStatsReplaces(Player player, RoundStats stats, String name, List<Object> statsReplaces) {
 		return getRoundStatsReplaces((CommandSender) player, stats, name, statsReplaces);
 	}
 
+	/**
+	 * Gets the round stats replaces.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @param stats
+	 *            the stats
+	 * @param name
+	 *            the name
+	 * @param statsReplaces
+	 *            the stats replaces
+	 * @return the round stats replaces
+	 */
 	public Object[] getRoundStatsReplaces(GamePlayer gamePlayer, RoundStats stats, String name,
 			List<Object> statsReplaces) {
 		return getRoundStatsReplaces(gamePlayer.getPlayer(), stats, name, statsReplaces);

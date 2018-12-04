@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 29.07.2018 17:16:21
+/*
+ * Created by Jan on 29.07.2018 17:16:21
  */
 package de.eaglefamily.game.listener;
 
@@ -15,10 +15,19 @@ import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.util.GameState;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving inventory events. When the
+ * inventory event occurs, that object's appropriate method is invoked.
+ *
+ * @see InventoryEvent
  */
 public class InventoryListener implements Listener {
 
+	/**
+	 * On inventory click.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
@@ -38,6 +47,12 @@ public class InventoryListener implements Listener {
 		}
 	}
 
+	/**
+	 * On inventory drag.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onInventoryDrag(InventoryDragEvent event) {
 		Player player = (Player) event.getWhoClicked();

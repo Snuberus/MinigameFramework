@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 30.07.2018 15:39:55
+/*
+ * Created by Jan on 30.07.2018 15:39:55
  */
 package de.eaglefamily.game.listener;
 
@@ -12,10 +12,16 @@ import de.eaglefamily.game.Game;
 import net.minecraft.server.v1_8_R3.PacketPlayInUseEntity;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving packet events. When the
+ * packet event occurs, that object's appropriate method is invoked.
+ *
+ * @see PacketEvent
  */
 public class PacketListener implements Listener {
 
+	/**
+	 * Instantiates a new packet listener.
+	 */
 	public PacketListener() {
 		onUseEntity();
 	}

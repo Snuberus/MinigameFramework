@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 15:43:38
+/*
+ * Created by Jan on 24.07.2018 15:43:38
  */
 package de.eaglefamily.game.manager;
 
@@ -26,25 +26,65 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @author _BlackEagle_
+ * The Class MapManager.
+ *
+ * @author Jan
  */
 public class MapManager {
 
 	private File worldFolder;
+	
+	/**
+	 * Checks if is imported.
+	 *
+	 * @return true, if is imported
+	 */
 	@Getter
 	private boolean imported;
+	
+	/**
+	 * Gets the config.
+	 *
+	 * @return the config
+	 */
 	@Getter
 	private Configuration config;
+	
+	/**
+	 * Gets the map name.
+	 *
+	 * @return the map name
+	 */
 	@Getter
 	private String mapName;
+	
+	/**
+	 * Gets the map builder.
+	 *
+	 * @return the map builder
+	 */
 	@Getter
 	private String mapBuilder;
+	
+	/**
+	 * Gets the material.
+	 *
+	 * @return the material
+	 */
 	@Getter
 	private Material material;
 
+	/**
+	 * Gets the voteable maps.
+	 *
+	 * @return the voteable maps
+	 */
 	@Getter
 	private List<VoteableMap> voteableMaps = Lists.newArrayList();
 
+	/**
+	 * Select votable maps.
+	 */
 	public void selectVotableMaps() {
 		for (int i = 0; i < Settings.voteableMaps; i++) {
 			String map = selectRandomVotableMap();
@@ -87,6 +127,9 @@ public class MapManager {
 		setMap(map.getMapName());
 	}
 
+	/**
+	 * Import map.
+	 */
 	public void importMap() {
 		if (imported) return;
 		if (mapName == null) {
@@ -112,6 +155,9 @@ public class MapManager {
 		});
 	}
 
+	/**
+	 * Delete map.
+	 */
 	public void deleteMap() {
 		if (!imported) return;
 		Bukkit.unloadWorld(Game.getInstance().getWorldManager().getGameWorld(), false);
@@ -130,6 +176,9 @@ public class MapManager {
 		}
 	}
 
+	/**
+	 * Delete lobby player data.
+	 */
 	public void deleteLobbyPlayerData() {
 		File lobbyWorld = new File(Bukkit.getServer().getWorldContainer(),
 				Game.getInstance().getConfig().getString("lobby.world"));
@@ -140,6 +189,12 @@ public class MapManager {
 		}
 	}
 
+	/**
+	 * Sets the map.
+	 *
+	 * @param mapName
+	 *            the new map
+	 */
 	public void setMap(String mapName) {
 		if (imported) return;
 		if (this.mapName == null) removeVoteItem();
@@ -149,6 +204,13 @@ public class MapManager {
 		Game.getInstance().getGamePlayers().forEach(GamePlayer::updateLobbySidebar);
 	}
 
+	/**
+	 * Gets the voted map.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the voted map
+	 */
 	public VoteableMap getVotedMap(GamePlayer gamePlayer) {
 		return voteableMaps.stream().filter(map -> map.playerVotes.contains(gamePlayer)).findFirst().orElse(null);
 	}
@@ -163,17 +225,57 @@ public class MapManager {
 		});
 	}
 
+	/**
+	 * Instantiates a new voteable map.
+	 *
+	 * @param mapName
+	 *            the map name
+	 * @param mapBuilder
+	 *            the map builder
+	 * @param material
+	 *            the material
+	 */
 	@AllArgsConstructor
 	public class VoteableMap {
+		
+		/**
+		 * Gets the map name.
+		 *
+		 * @return the map name
+		 */
 		@Getter
 		private final String mapName;
+		
+		/**
+		 * Gets the map builder.
+		 *
+		 * @return the map builder
+		 */
 		@Getter
 		private final String mapBuilder;
+		
+		/**
+		 * Gets the material.
+		 *
+		 * @return the material
+		 */
 		@Getter
 		private final Material material;
+		
+		/**
+		 * Gets the player votes.
+		 *
+		 * @return the player votes
+		 */
 		@Getter
 		private final List<GamePlayer> playerVotes = Lists.newArrayList();
 
+		/**
+		 * Vote.
+		 *
+		 * @param gamePlayer
+		 *            the game player
+		 */
 		public void vote(GamePlayer gamePlayer) {
 			if (playerVotes.contains(gamePlayer)) return;
 			playerVotes.add(gamePlayer);
@@ -181,10 +283,21 @@ public class MapManager {
 					.forEach(map -> map.unvote(gamePlayer));
 		}
 
+		/**
+		 * Unvote.
+		 *
+		 * @param gamePlayer
+		 *            the game player
+		 */
 		public void unvote(GamePlayer gamePlayer) {
 			playerVotes.remove(gamePlayer);
 		}
 
+		/**
+		 * Gets the votes.
+		 *
+		 * @return the votes
+		 */
 		public int getVotes() {
 			return playerVotes.size();
 		}

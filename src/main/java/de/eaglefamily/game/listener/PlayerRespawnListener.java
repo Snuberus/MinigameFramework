@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 30.07.2018 23:25:15
+/*
+ * Created by Jan on 30.07.2018 23:25:15
  */
 package de.eaglefamily.game.listener;
 
@@ -14,10 +14,19 @@ import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving playerRespawn events. When
+ * the playerRespawn event occurs, that object's appropriate method is invoked.
+ *
+ * @see PlayerRespawnEvent
  */
 public class PlayerRespawnListener implements Listener {
 
+	/**
+	 * On player respawn.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		Player player = event.getPlayer();

@@ -1,5 +1,5 @@
 /**
- * Created by _BlackEagle_ on 24.07.2018 15:43:47
+ *Created by Jan on 24.07.2018 15:43:47
  */
 package de.eaglefamily.game.manager;
 
@@ -14,18 +14,34 @@ import de.eaglefamily.game.util.Settings;
 import lombok.Getter;
 
 /**
- * @author _BlackEagle_
+ * The Class WorldManager.
+ *
+ * @author Jan
  */
 public class WorldManager {
 
+	/**
+	 * Gets the lobby world.
+	 *
+	 * @return the lobby world
+	 */
 	@Getter
 	private World lobbyWorld;
 	private Location lobbySpawn;
+	
+	/**
+	 * Gets the game world.
+	 *
+	 * @return the game world
+	 */
 	@Getter
 	private World gameWorld;
 	private Location gameSpawn;
 	private Location spectatorSpawn;
 
+	/**
+	 * Load lobby world.
+	 */
 	public void loadLobbyWorld() {
 		lobbyWorld = Bukkit.getServer()
 				.createWorld(new WorldCreator(Game.getInstance().getConfig().getString("lobby.world")));
@@ -58,6 +74,9 @@ public class WorldManager {
 		lobbyWorld.setSpawnLocation(lobbySpawn.getBlockX(), lobbySpawn.getBlockY(), lobbySpawn.getBlockZ());
 	}
 
+	/**
+	 * Load game world.
+	 */
 	public void loadGameWorld() {
 		gameWorld = Bukkit.getServer()
 				.createWorld(new WorldCreator(Game.getInstance().getMapManager().getConfig().getString("world")));
@@ -84,14 +103,29 @@ public class WorldManager {
 		}
 	}
 
+	/**
+	 * Gets the lobby spawn.
+	 *
+	 * @return the lobby spawn
+	 */
 	public Location getLobbySpawn() {
 		return lobbySpawn.clone();
 	}
 
+	/**
+	 * Gets the spectator spawn.
+	 *
+	 * @return the spectator spawn
+	 */
 	public Location getSpectatorSpawn() {
 		return spectatorSpawn.clone();
 	}
 
+	/**
+	 * Gets the game spawn.
+	 *
+	 * @return the game spawn
+	 */
 	public Location getGameSpawn() {
 		if (gameSpawn == null) return null;
 		return gameSpawn.clone();

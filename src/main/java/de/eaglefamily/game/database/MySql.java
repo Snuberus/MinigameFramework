@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 11:53:29
+/*
+ * Created by Jan on 24.07.2018 11:53:29
  */
 package de.eaglefamily.game.database;
 
@@ -27,7 +27,9 @@ import de.eaglefamily.game.util.Stats;
 import de.eaglefamily.game.util.StatsParameter;
 
 /**
- * @author _BlackEagle_
+ * The Class MySql.
+ *
+ * @author Jan
  */
 public class MySql implements Database {
 
@@ -41,6 +43,24 @@ public class MySql implements Database {
 	private String userTable;
 	private String statsTable;
 
+	/**
+	 * Instantiates a new my sql.
+	 *
+	 * @param host
+	 *            the host
+	 * @param port
+	 *            the port
+	 * @param database
+	 *            the database
+	 * @param username
+	 *            the username
+	 * @param password
+	 *            the password
+	 * @param userTable
+	 *            the user table
+	 * @param statsTable
+	 *            the stats table
+	 */
 	public MySql(String host, int port, String database, String username, String password, String userTable,
 			String statsTable) {
 		this.host = host;
@@ -235,6 +255,9 @@ public class MySql implements Database {
 		}
 	}
 
+	/**
+	 * Creates the stats table.
+	 */
 	public void createStatsTable() {
 		String statsColumn = "";
 		for (StatsParameter statsParameter : Settings.statsParameter) {
@@ -310,6 +333,9 @@ public class MySql implements Database {
 		else TaskManager.runTaskAsync(run);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.eaglefamily.game.database.Database#getStats(int, long, java.util.function.Consumer, boolean)
+	 */
 	@Override
 	public void getStats(int position, long time, Consumer<Stats> consumer, boolean sync) {
 		if (connection == null) return;

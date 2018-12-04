@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 29.07.2018 16:13:40
+/*
+ * Created by Jan on 29.07.2018 16:13:40
  */
 package de.eaglefamily.game.listener;
 
@@ -22,12 +22,22 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving asyncPlayerChat events. When
+ * the asyncPlayerChat event occurs, that object's appropriate method is
+ * invoked.
+ *
+ * @see AsyncPlayerChatEvent
  */
 public class AsyncPlayerChatListener implements Listener {
 
 	private final List<String> ALL = Lists.newArrayList("@all ", "@all", "@a ", "@a", "@ ", "@");
 
+	/**
+	 * On chat.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onChat(AsyncPlayerChatEvent event) {
 		event.setCancelled(true);

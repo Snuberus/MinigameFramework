@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 17:02:32
+/*
+ * Created by Jan on 10.08.2018 17:02:32
  */
 package de.eaglefamily.game.command;
 
@@ -17,10 +17,20 @@ import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Class StartCmd.
+ *
+ * @author Jan
  */
 public class StartCmd {
 
+	/**
+	 * On start.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 */
 	@Command(label = "start")
 	public void onStart(CommandSender sender, String[] args) {
 		if (!sender.hasPermission("game.start")) {
@@ -48,6 +58,15 @@ public class StartCmd {
 
 	}
 
+	/**
+	 * On start tab.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 * @return the list
+	 */
 	@TabCompleter(label = "start")
 	public List<String> onStartTab(CommandSender sender, String[] args) {
 		return Lists.newArrayList();

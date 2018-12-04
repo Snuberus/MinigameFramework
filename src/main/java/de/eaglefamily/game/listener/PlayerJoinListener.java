@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 25.07.2018 11:09:51
+/*
+ * Created by Jan on 25.07.2018 11:09:51
  */
 package de.eaglefamily.game.listener;
 
@@ -27,10 +27,19 @@ import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving playerJoin events. When the
+ * playerJoin event occurs, that object's appropriate method is invoked.
+ *
+ * @see PlayerJoinEvent
  */
 public class PlayerJoinListener implements Listener {
 
+	/**
+	 * On async player pre login.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
 		if (Bukkit.getPlayer(event.getUniqueId()) != null) {
@@ -74,6 +83,12 @@ public class PlayerJoinListener implements Listener {
 		return checkGroupKickEvent.isKicked();
 	}
 
+	/**
+	 * On player login.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Player player = event.getPlayer();
@@ -83,6 +98,12 @@ public class PlayerJoinListener implements Listener {
 		});
 	}
 
+	/**
+	 * On player join.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.setJoinMessage("");

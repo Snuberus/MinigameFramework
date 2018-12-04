@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 30.07.2018 15:39:07
+/*
+ * Created by Jan on 30.07.2018 15:39:07
  */
 package de.eaglefamily.game.listener;
 
@@ -15,10 +15,19 @@ import de.eaglefamily.game.GamePlayer;
 import de.eaglefamily.game.util.GameState;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving playerMove events. When the
+ * playerMove event occurs, that object's appropriate method is invoked.
+ *
+ * @see PlayerMoveEvent
  */
 public class PlayerMoveListener implements Listener {
 
+	/**
+	 * On player move.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;
@@ -35,6 +44,12 @@ public class PlayerMoveListener implements Listener {
 				.forEach(gP -> gP.getPlayer().setCompassTarget(event.getTo()));
 	}
 
+	/**
+	 * On player teleport.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerTeleport(PlayerTeleportEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;

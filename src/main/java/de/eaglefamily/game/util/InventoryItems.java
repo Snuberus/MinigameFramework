@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 31.07.2018 19:07:54
+/*
+ * Created by Jan on 31.07.2018 19:07:54
  */
 package de.eaglefamily.game.util;
 
@@ -21,25 +21,55 @@ import de.eaglefamily.game.GameTeam;
 import de.eaglefamily.game.manager.MapManager.VoteableMap;
 
 /**
- * @author _BlackEagle_
+ * The Class InventoryItems.
+ *
+ * @author Jan
  */
 public class InventoryItems {
 
+	/**
+	 * Panel.
+	 *
+	 * @return the item stack
+	 */
 	public static ItemStack panel() {
 		return new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 15).setDisplayName(" ").build();
 	}
 
+	/**
+	 * Leave confirm.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the item stack
+	 */
 	public static ItemStack leaveConfirm(GamePlayer gamePlayer) {
 		return new ItemBuilder(Material.STAINED_CLAY, 1, (short) 14)
 				.setDisplayName(gamePlayer.translateUTF("inventory.leave.confirm"))
 				.onClick(click -> click.getPlayer().kickPlayer("")).build();
 	}
 
+	/**
+	 * Leave cancel.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the item stack
+	 */
 	public static ItemStack leaveCancel(GamePlayer gamePlayer) {
 		return new ItemBuilder(Material.BARRIER).setDisplayName(gamePlayer.translateUTF("inventory.leave.cancel"))
 				.onClick(click -> click.getPlayer().closeInventory()).build();
 	}
 
+	/**
+	 * Team.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @param gameTeam
+	 *            the game team
+	 * @return the item stack
+	 */
 	public static ItemStack team(GamePlayer gamePlayer, GameTeam gameTeam) {
 		List<String> lore = Lists.newArrayList();
 		gameTeam.getPlayers().forEach(
@@ -79,6 +109,15 @@ public class InventoryItems {
 				.forEach(player -> player.getPlayer().openInventory(Inventories.team(player)));
 	}
 
+	/**
+	 * Vote map.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @param map
+	 *            the map
+	 * @return the item stack
+	 */
 	public static ItemStack voteMap(GamePlayer gamePlayer, VoteableMap map) {
 		ItemBuilder builder = new ItemBuilder(map.getMaterial())
 				.setDisplayName(gamePlayer.translateUTF("inventory.vote.mapname", "map", map.getMapName()))
@@ -109,6 +148,15 @@ public class InventoryItems {
 				.forEach(player -> player.getPlayer().openInventory(Inventories.vote(player)));
 	}
 
+	/**
+	 * Compass player.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @param target
+	 *            the target
+	 * @return the item stack
+	 */
 	public static ItemStack compassPlayer(GamePlayer gamePlayer, GamePlayer target) {
 		return new ItemBuilder(Material.SKULL_ITEM, 1, (short) 3).setOwner(target.getPlayer())
 				.setDisplayName(gamePlayer.translateUTF("inventory.compass.playername", target.getReplaces(gamePlayer)))

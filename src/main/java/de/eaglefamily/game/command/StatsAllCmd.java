@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 18:36:31
+/*
+ * Created by Jan on 10.08.2018 18:36:31
  */
 package de.eaglefamily.game.command;
 
@@ -17,10 +17,20 @@ import de.eaglefamily.game.util.Stats;
 import de.eaglefamily.game.util.StatsReplaces;
 
 /**
- * @author _BlackEagle_
+ * The Class StatsAllCmd.
+ *
+ * @author Jan
  */
 public class StatsAllCmd {
 
+	/**
+	 * On stats.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 */
 	@Command(label = "statsall")
 	public void onStats(CommandSender sender, String[] args) {
 		if (args.length > 1) {

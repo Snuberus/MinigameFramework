@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 11:08:45
+/*
+ * Created by Jan on 24.07.2018 11:08:45
  */
 package de.eaglefamily.game;
 
@@ -18,14 +18,22 @@ import de.eaglefamily.bukkitlibrary.language.LanguageManager;
 import de.eaglefamily.game.listener.GameStartEndListener;
 
 /**
- * @author _BlackEagle_
+ * The Class GamePlugin.
+ *
+ * @author Jan
  */
 public abstract class GamePlugin extends JavaPlugin {
 
+	/** The game. */
 	protected final Game game = new Game(this);
+	
+	/** The config. */
 	protected Configuration config;
 	private GameStartEndListener gameListener;
 
+	/**
+	 * Load config.
+	 */
 	protected void loadConfig() {
 		if (!getDataFolder().exists()) getDataFolder().mkdir();
 		File configFile = new File(getDataFolder(), "config.yml");
@@ -39,6 +47,12 @@ public abstract class GamePlugin extends JavaPlugin {
 		config = YamlConfiguration.loadConfiguration(configFile);
 	}
 
+	/**
+	 * Load languages.
+	 *
+	 * @param path
+	 *            the path
+	 */
 	protected void loadLanguages(String path) {
 		File languageFolder;
 		if (path == null) languageFolder = new File(getDataFolder(), "language");
@@ -60,10 +74,19 @@ public abstract class GamePlugin extends JavaPlugin {
 		});
 	}
 
+	/**
+	 * Load languages.
+	 */
 	protected void loadLanguages() {
 		loadLanguages(null);
 	}
 
+	/**
+	 * Register game listener.
+	 *
+	 * @param listener
+	 *            the listener
+	 */
 	protected void registerGameListener(Listener listener) {
 		if (gameListener == null) {
 			gameListener = new GameStartEndListener();

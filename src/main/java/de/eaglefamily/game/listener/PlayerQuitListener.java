@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 25.07.2018 11:09:59
+/*
+ * Created by Jan on 25.07.2018 11:09:59
  */
 package de.eaglefamily.game.listener;
 
@@ -21,10 +21,19 @@ import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving playerQuit events. When the
+ * playerQuit event occurs, that object's appropriate method is invoked.
+ *
+ * @see PlayerQuitEvent
  */
 public class PlayerQuitListener implements Listener {
 
+	/**
+	 * On player quit.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		event.setQuitMessage("");

@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 24.07.2018 11:08:49
+/*
+ * Created by Jan on 24.07.2018 11:08:49
  */
 package de.eaglefamily.game;
 
@@ -73,38 +73,215 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author _BlackEagle_
+ * The Class Game.
+ *
+ * @author Jan
  */
 public class Game {
 
+	/**
+	 * Gets the single instance of Game.
+	 *
+	 * @return single instance of Game
+	 */
+	
+	/**
+	 * Gets the single instance of Game.
+	 *
+	 * @return single instance of Game
+	 */
 	@Getter
 	private static Game instance;
+	
+	/**
+	 * Gets the plugin.
+	 *
+	 * @return the plugin
+	 */
+	
+	/**
+	 * Gets the plugin.
+	 *
+	 * @return the plugin
+	 */
 	@Getter
 	private static JavaPlugin plugin;
+	
+	/**
+	 * Gets the config.
+	 *
+	 * @return the config
+	 */
+	
+	/**
+	 * Gets the config.
+	 *
+	 * @return the config
+	 */
 	@Getter
 	private Configuration config;
+	
+	/**
+	 * Gets the database.
+	 *
+	 * @return the database
+	 */
+	
+	/**
+	 * Gets the database.
+	 *
+	 * @return the database
+	 */
 	@Getter
 	private Database database;
+	
+	/**
+	 * Gets the game teams.
+	 *
+	 * @return the game teams
+	 */
+	
+	/**
+	 * Gets the game teams.
+	 *
+	 * @return the game teams
+	 */
 	@Getter
 	private List<GameTeam> gameTeams = Lists.newArrayList();
+	
+	/**
+	 * Gets the player manager.
+	 *
+	 * @return the player manager
+	 */
+	
+	/**
+	 * Gets the player manager.
+	 *
+	 * @return the player manager
+	 */
 	@Getter
 	private PlayerManager playerManager;
+	
+	/**
+	 * Gets the map manager.
+	 *
+	 * @return the map manager
+	 */
+	
+	/**
+	 * Gets the map manager.
+	 *
+	 * @return the map manager
+	 */
 	@Getter
 	private MapManager mapManager;
+	
+	/**
+	 * Gets the world manager.
+	 *
+	 * @return the world manager
+	 */
+	
+	/**
+	 * Gets the world manager.
+	 *
+	 * @return the world manager
+	 */
 	@Getter
 	private WorldManager worldManager;
+	
+	/**
+	 * Gets the stats manager.
+	 *
+	 * @return the stats manager
+	 */
+	
+	/**
+	 * Gets the stats manager.
+	 *
+	 * @return the stats manager
+	 */
 	@Getter
 	private StatsManager statsManager;
+	
+	/**
+	 * Gets the lobby countdown.
+	 *
+	 * @return the lobby countdown
+	 */
+	
+	/**
+	 * Gets the lobby countdown.
+	 *
+	 * @return the lobby countdown
+	 */
 	@Getter
 	private LobbyCountdown lobbyCountdown = new LobbyCountdown();
+	
+	/**
+	 * Gets the game countdown.
+	 *
+	 * @return the game countdown
+	 */
+	
+	/**
+	 * Gets the game countdown.
+	 *
+	 * @return the game countdown
+	 */
 	@Getter
 	private GameCountdown gameCountdown = new GameCountdown();
+	
+	/**
+	 * Gets the end countdown.
+	 *
+	 * @return the end countdown
+	 */
+	
+	/**
+	 * Gets the end countdown.
+	 *
+	 * @return the end countdown
+	 */
 	@Getter
 	private EndCountdown endCountdown = new EndCountdown();
+	
+	/**
+	 * Gets the last disconnected.
+	 *
+	 * @return the last disconnected
+	 */
+	
+	/**
+	 * Gets the last disconnected.
+	 *
+	 * @return the last disconnected
+	 */
 	@Getter
+	
+	/**
+	 * Sets the last disconnected.
+	 *
+	 * @param lastDisconnected
+	 *            the new last disconnected
+	 */
+	
+	/**
+	 * Sets the last disconnected.
+	 *
+	 * @param lastDisconnected
+	 *            the new last disconnected
+	 */
 	@Setter
 	private GamePlayer lastDisconnected;
 
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param plugin
+	 *            the plugin
+	 */
 	protected Game(JavaPlugin plugin) {
 		if (instance != null) return;
 		instance = this;
@@ -112,6 +289,9 @@ public class Game {
 		BukkitLibrary.setPlugin(plugin);
 	}
 
+	/**
+	 * Initialize.
+	 */
 	public void initialize() {
 		Bukkit.getOnlinePlayers().forEach(player -> player.kickPlayer(""));
 		((CraftServer) Bukkit.getServer()).getHandle().getServer().setAllowFlight(true);
@@ -146,6 +326,9 @@ public class Game {
 
 	}
 
+	/**
+	 * Prepare game.
+	 */
 	public void prepareGame() {
 		if (GameState.getStatus() != GameState.LOBBY) return;
 		mapManager.importMap();
@@ -153,6 +336,9 @@ public class Game {
 		Bukkit.getPluginManager().callEvent(new GamePrepareEvent());
 	}
 
+	/**
+	 * Start game.
+	 */
 	public void startGame() {
 		if (GameState.getStatus() != GameState.LOBBY) return;
 		GameState.setStatus(GameState.STARTING);
@@ -186,6 +372,9 @@ public class Game {
 		TaskManager.runTaskLater(20l, () -> checkEnd());
 	}
 
+	/**
+	 * Check end.
+	 */
 	public void checkEnd() {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		if (getGamePlayers().stream().filter(gP -> !gP.isSpectator()).count() <= 1) {
@@ -202,6 +391,12 @@ public class Game {
 		if (lastTeams.size() == 1) endTeam(lastTeams.get(0));
 	}
 
+	/**
+	 * End player.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 */
 	public void endPlayer(GamePlayer gamePlayer) {
 		if (Settings.teams) {
 			if (gamePlayer == null) endTeam(null);
@@ -231,6 +426,12 @@ public class Game {
 		Bukkit.getPluginManager().callEvent(new GameEndPlayerEvent(gamePlayer));
 	}
 
+	/**
+	 * End team.
+	 *
+	 * @param gameTeam
+	 *            the game team
+	 */
 	public void endTeam(GameTeam gameTeam) {
 		if (GameState.getStatus() != GameState.INGAME) return;
 		GameState.setStatus(GameState.ENDING);
@@ -321,6 +522,9 @@ public class Game {
 		});
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		GameState.setStatus(GameState.SHUTDOWN);
 
@@ -412,10 +616,22 @@ public class Game {
 		edgar.remove();
 	}
 
+	/**
+	 * Gets the game players.
+	 *
+	 * @return the game players
+	 */
 	public List<GamePlayer> getGamePlayers() {
 		return playerManager.getGamePlayers();
 	}
 
+	/**
+	 * Gets the game player.
+	 *
+	 * @param player
+	 *            the player
+	 * @return the game player
+	 */
 	public GamePlayer getGamePlayer(Player player) {
 		return playerManager.getGamePlayer(player);
 	}

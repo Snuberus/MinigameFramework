@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 18:47:09
+/*
+ * Created by Jan on 10.08.2018 18:47:09
  */
 package de.eaglefamily.game.util;
 
@@ -12,9 +12,22 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @author _BlackEagle_
+ * Instantiates a new stats.
+ *
+ * @param uuid
+ *            the uuid
+ * @param position
+ *            the position
+ * @param statsValues
+ *            the stats values
  */
 @AllArgsConstructor
+
+/**
+ * Gets the stats values.
+ *
+ * @return the stats values
+ */
 @Getter
 public class Stats {
 
@@ -22,10 +35,24 @@ public class Stats {
 	private final int position;
 	private final Map<StatsParameter, Object> statsValues;
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param statsParameter
+	 *            the stats parameter
+	 * @return the stats
+	 */
 	public Object getStats(StatsParameter statsParameter) {
 		return statsValues.get(statsParameter);
 	}
 
+	/**
+	 * Gets the stats.
+	 *
+	 * @param stats
+	 *            the stats
+	 * @return the stats
+	 */
 	public Object getStats(String stats) {
 		return getStats(getStatsParameter(stats));
 	}
@@ -35,6 +62,13 @@ public class Stats {
 				.findFirst().orElse(null);
 	}
 
+	/**
+	 * Gets the empty.
+	 *
+	 * @param uuid
+	 *            the uuid
+	 * @return the empty
+	 */
 	public static Stats getEmpty(UUID uuid) {
 		return new Stats(uuid, 0,
 				Settings.statsParameter.stream().collect(Collectors.toMap(Function.identity(), value -> 0)));

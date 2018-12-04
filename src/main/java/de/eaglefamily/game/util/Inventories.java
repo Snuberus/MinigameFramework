@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 31.07.2018 16:52:54
+/*
+ * Created by Jan on 31.07.2018 16:52:54
  */
 package de.eaglefamily.game.util;
 
@@ -10,7 +10,9 @@ import de.eaglefamily.game.Game;
 import de.eaglefamily.game.GamePlayer;
 
 /**
- * @author _BlackEagle_
+ * The Class Inventories.
+ *
+ * @author Jan
  */
 public class Inventories {
 
@@ -21,6 +23,13 @@ public class Inventories {
 		}
 	}
 
+	/**
+	 * Leave.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the inventory
+	 */
 	public static Inventory leave(GamePlayer gamePlayer) {
 		Inventory inv = Bukkit.createInventory(null, 9, gamePlayer.translateUTF("inventory.leave.title"));
 		inv.setItem(4, InventoryItems.leaveConfirm(gamePlayer));
@@ -29,6 +38,13 @@ public class Inventories {
 		return inv;
 	}
 
+	/**
+	 * Team.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the inventory
+	 */
 	public static Inventory team(GamePlayer gamePlayer) {
 		int invSize = 1;
 		if (Settings.numberOfTeams > 8) invSize = (Settings.numberOfTeams + 8) / 9;
@@ -102,6 +118,13 @@ public class Inventories {
 		inv.setItem(slot + 9, InventoryItems.team(gamePlayer, Game.getInstance().getGameTeams().get(index)));
 	}
 
+	/**
+	 * Vote.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the inventory
+	 */
 	public static Inventory vote(GamePlayer gamePlayer) {
 		int invSize = 1;
 		if (Game.getInstance().getMapManager().getVoteableMaps()
@@ -149,6 +172,13 @@ public class Inventories {
 				InventoryItems.voteMap(gamePlayer, Game.getInstance().getMapManager().getVoteableMaps().get(index)));
 	}
 
+	/**
+	 * Compass.
+	 *
+	 * @param gamePlayer
+	 *            the game player
+	 * @return the inventory
+	 */
 	public static Inventory compass(GamePlayer gamePlayer) {
 		int invSize = 1;
 		if (Game.getInstance().getGamePlayers().stream().filter(GamePlayer::isGamePlayer)

@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 28.07.2018 16:58:27
+/*
+ * Created by Jan on 28.07.2018 16:58:27
  */
 package de.eaglefamily.game.countdown;
 
@@ -11,7 +11,9 @@ import de.eaglefamily.game.event.GameCountdownEvent.GameSecondEvent;
 import de.eaglefamily.game.event.GameCountdownEvent.GameTickEvent;
 
 /**
- * @author _BlackEagle_
+ * The Class GameCountdown.
+ *
+ * @author Jan
  */
 public class GameCountdown extends Counter {
 
@@ -25,6 +27,9 @@ public class GameCountdown extends Counter {
 		Bukkit.getPluginManager().callEvent(new GameTickEvent(counter));
 	}
 
+	/* (non-Javadoc)
+	 * @see de.eaglefamily.game.countdown.Counter#onSecond()
+	 */
 	@Override
 	public void onSecond() {
 

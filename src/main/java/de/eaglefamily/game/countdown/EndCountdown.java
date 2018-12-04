@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 28.07.2018 16:59:31
+/*
+ * Created by Jan on 28.07.2018 16:59:31
  */
 package de.eaglefamily.game.countdown;
 
@@ -12,7 +12,9 @@ import de.eaglefamily.game.event.EndCountdownEvent.EndTickEvent;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Class EndCountdown.
+ *
+ * @author Jan
  */
 public class EndCountdown extends Counter {
 
@@ -26,6 +28,9 @@ public class EndCountdown extends Counter {
 		Bukkit.getPluginManager().callEvent(new EndTickEvent(counter));
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.eaglefamily.game.countdown.Counter#onSecond()
+	 */
 	@Override
 	public void onSecond() {
 		if (getCountdown() <= 0) {

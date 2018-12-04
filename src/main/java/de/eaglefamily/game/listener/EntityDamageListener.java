@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 29.07.2018 17:27:21
+/*
+ * Created by Jan on 29.07.2018 17:27:21
  */
 package de.eaglefamily.game.listener;
 
@@ -17,10 +17,19 @@ import de.eaglefamily.game.util.GameState;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Object of a listener interface for receiving entityDamage events. When
+ * the entityDamage event occurs, that object's appropriate method is invoked.
+ *
+ * @see EntityDamageEvent
  */
 public class EntityDamageListener implements Listener {
 
+	/**
+	 * On entity damage.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onEntityDamage(EntityDamageEvent event) {
 		switch (GameState.getStatus()) {
@@ -41,6 +50,12 @@ public class EntityDamageListener implements Listener {
 		}
 	}
 
+	/**
+	 * On entity damage by entity.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@EventHandler
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		if (GameState.getStatus() != GameState.INGAME) return;

@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 17:02:19
+/*
+ * Created by Jan on 10.08.2018 17:02:19
  */
 package de.eaglefamily.game.command;
 
@@ -15,10 +15,20 @@ import de.eaglefamily.bukkitlibrary.language.Message;
 import de.eaglefamily.game.Game;
 
 /**
- * @author _BlackEagle_
+ * The Class MapCmd.
+ *
+ * @author Jan
  */
 public class MapCmd {
 
+	/**
+	 * On label.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 */
 	@Command(label = "map")
 	public void onLabel(CommandSender sender, String[] args) {
 		if (Game.getInstance().getMapManager().getMapName() != null) Message.send(sender, "map.show", "map",
@@ -27,6 +37,15 @@ public class MapCmd {
 		else Message.send(sender, "map.vote");
 	}
 
+	/**
+	 * On map tab.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 * @return the list
+	 */
 	@TabCompleter(label = "map")
 	public List<String> onMapTab(CommandSender sender, String[] args) {
 		return Lists.newArrayList();

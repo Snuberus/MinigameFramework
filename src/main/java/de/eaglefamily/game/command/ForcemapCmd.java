@@ -1,5 +1,5 @@
-/**
- * Created by _BlackEagle_ on 10.08.2018 17:02:38
+/*
+ * Created by Jan on 10.08.2018 17:02:38
  */
 package de.eaglefamily.game.command;
 
@@ -18,10 +18,20 @@ import de.eaglefamily.game.Game;
 import de.eaglefamily.game.util.Settings;
 
 /**
- * @author _BlackEagle_
+ * The Class ForcemapCmd.
+ *
+ * @author Jan
  */
 public class ForcemapCmd {
 
+	/**
+	 * On forcemap.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 */
 	@Command(label = "forcemap", aliases = { "force" })
 	public void onForcemap(CommandSender sender, String[] args) {
 		if (!sender.hasPermission("game.forcemap")) {
@@ -68,6 +78,15 @@ public class ForcemapCmd {
 
 	}
 
+	/**
+	 * On forcemap tab.
+	 *
+	 * @param sender
+	 *            the sender
+	 * @param args
+	 *            the args
+	 * @return the list
+	 */
 	@TabCompleter(label = "forcemap")
 	public List<String> onForcemapTab(CommandSender sender, String[] args) {
 		if (args.length != 1 || !sender.hasPermission("game.forcemap")) return Lists.newArrayList();
